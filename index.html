@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mano Studio — Web Design Barcelona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:      #F5F0EA;
+      --text:    #1A1814;
+      --accent:  #C0A889;
+      --cream:   #F0EBE1;
+      --dark:    #1A1814;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ─── Utility ───────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--dark);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--dark);
+      border: 1px solid var(--dark);
+    }
+
+    .btn--outline:hover {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    /* ─── WORDMARK ──────────────────────────────────────────── */
+    #wordmark {
+      background: var(--bg);
+      text-align: center;
+      padding: 60px 40px 56px;
+    }
+
+    .wordmark__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(48px, 8vw, 72px);
+      letter-spacing: 0.08em;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    /* ─── NAV ───────────────────────────────────────────────── */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--dark);
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    #nav .nav__inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+      flex: 1;
+      justify-content: space-evenly;
+    }
+
+    .nav__links a {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-variant: small-caps;
+      color: var(--cream);
+      opacity: 0.75;
+      transition: opacity 0.15s;
+    }
+
+    .nav__links a:hover {
+      opacity: 1;
+    }
+
+    .nav__lang {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav__lang button {
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.5;
+      cursor: pointer;
+      padding: 0;
+      transition: opacity 0.15s;
+    }
+
+    .nav__lang button.active,
+    .nav__lang button:hover {
+      opacity: 1;
+    }
+
+    .nav__lang span {
+      color: var(--cream);
+      opacity: 0.3;
+      font-size: 10px;
+    }
+
+    /* Hamburger */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: var(--cream);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .nav__hamburger.open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .nav__hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav__hamburger.open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /* Mobile drawer */
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--dark);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+
+    .nav__drawer.open {
+      display: flex;
+    }
+
+    .nav__drawer a {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.85;
+    }
+
+    .nav__drawer .nav__lang {
+      margin-top: 12px;
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px;
+    }
+
+    .hero__inner {
+      max-width: 780px;
+    }
+
+    .hero__headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: 1.1;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+
+    .hero__sub {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: clamp(15px, 1.8vw, 18px);
+      line-height: 1.75;
+      color: var(--text);
+      opacity: 0.75;
+      margin-bottom: 48px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── PITCH ─────────────────────────────────────────────── */
+    #pitch {
+      background: var(--dark);
+      padding: 100px 0;
+      overflow: hidden;
+    }
+
+    #pitch .container {
+      max-width: 1100px;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .pitch__copy {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .pitch__text {
+      font-size: clamp(15px, 1.5vw, 18px);
+      line-height: 1.9;
+      color: var(--cream);
+      opacity: 0.82;
+    }
+
+    /* CSS Geometric graphic */
+    .pitch__graphic {
+      position: relative;
+      height: 460px;
+      flex-shrink: 0;
+    }
+
+    .pitch__graphic .g-rect {
+      position: absolute;
+    }
+
+    /* Outermost frame — large page silhouette */
+    .g-rect--frame {
+      width: 300px;
+      height: 390px;
+      border: 1px solid rgba(192,168,137,0.25);
+      top: 30px;
+      left: 30px;
+    }
+
+    /* Hero image block */
+    .g-rect--hero {
+      width: 260px;
+      height: 140px;
+      background: #2a261f;
+      top: 58px;
+      left: 50px;
+    }
+
+    /* Headline lines */
+    .g-rect--h1 {
+      width: 160px;
+      height: 8px;
+      background: var(--cream);
+      opacity: 0.7;
+      top: 218px;
+      left: 50px;
+    }
+
+    .g-rect--h2 {
+      width: 110px;
+      height: 8px;
+      background: var(--cream);
+      opacity: 0.4;
+      top: 234px;
+      left: 50px;
+    }
+
+    /* Body text lines */
+    .g-rect--b1 {
+      width: 220px;
+      height: 4px;
+      background: rgba(240,235,225,0.2);
+      top: 264px;
+      left: 50px;
+    }
+
+    .g-rect--b2 {
+      width: 200px;
+      height: 4px;
+      background: rgba(240,235,225,0.2);
+      top: 276px;
+      left: 50px;
+    }
+
+    .g-rect--b3 {
+      width: 180px;
+      height: 4px;
+      background: rgba(240,235,225,0.15);
+      top: 288px;
+      left: 50px;
+    }
+
+    /* CTA button */
+    .g-rect--cta {
+      width: 88px;
+      height: 26px;
+      background: var(--accent);
+      top: 316px;
+      left: 50px;
+    }
+
+    /* Nav bar at top of mock */
+    .g-rect--nav {
+      width: 300px;
+      height: 22px;
+      background: rgba(192,168,137,0.15);
+      top: 30px;
+      left: 30px;
+    }
+
+    /* Three nav dots/items */
+    .g-rect--nav-dot {
+      width: 28px;
+      height: 4px;
+      background: rgba(192,168,137,0.5);
+      top: 39px;
+    }
+
+    .g-rect--nav-dot:nth-child(9)  { left: 200px; }
+    .g-rect--nav-dot:nth-child(10) { left: 238px; }
+    .g-rect--nav-dot:nth-child(11) { left: 276px; }
+
+    /* Overlapping accent card — pulls out to the right */
+    .g-rect--accent-card {
+      width: 180px;
+      height: 200px;
+      background: var(--accent);
+      opacity: 0.18;
+      top: 160px;
+      left: 190px;
+    }
+
+    /* Second floating card */
+    .g-rect--float {
+      width: 140px;
+      height: 80px;
+      background: #2a261f;
+      border: 1px solid rgba(192,168,137,0.3);
+      top: 360px;
+      left: 170px;
+    }
+
+    .g-rect--float-line1 {
+      width: 80px;
+      height: 5px;
+      background: var(--accent);
+      opacity: 0.6;
+      top: 378px;
+      left: 186px;
+    }
+
+    .g-rect--float-line2 {
+      width: 60px;
+      height: 4px;
+      background: rgba(240,235,225,0.2);
+      top: 391px;
+      left: 186px;
+    }
+
+    /* Large background rectangle — bleeds off right */
+    .g-rect--bg-slab {
+      width: 380px;
+      height: 460px;
+      background: rgba(192,168,137,0.06);
+      top: 0;
+      left: 0;
+    }
+
+    /* ─── WORK ──────────────────────────────────────────────── */
+    #work {
+      background: var(--bg);
+    }
+
+    .work__header {
+      background: var(--bg);
+      padding: 100px 40px 60px;
+      text-align: center;
+    }
+
+    #work .section-label {
+      color: var(--accent);
+    }
+
+    .work__heading {
+      font-size: clamp(28px, 4vw, 50px);
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .work__subline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--text);
+      opacity: 0.45;
+      letter-spacing: 0.04em;
+    }
+
+    /* Work rows */
+    .work__rows {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--bg);
+      padding: 0 40px;
+    }
+
+    .work__row {
+      width: 100%;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+
+    .work__row:hover {
+      filter: brightness(1.06);
+    }
+
+    /* Row 1 — Osteria Nora / deep chocolate */
+    .work__row--nora {
+      background: #382615;
+    }
+
+    /* Row 2 — Flor & Rama / green */
+    .work__row--flor {
+      background: #536D5F;
+    }
+
+    /* Row 3 — Palau / linen */
+    .work__row--palau {
+      background: #DDD1BC;
+    }
+
+    /* Row 4 — Bar Bravo / bistre */
+    .work__row--bravo {
+      background: #210100;
+    }
+
+    /* Left: big business name */
+    .work__row-left {
+      flex: 0 0 auto;
+    }
+
+    .work__row-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(40px, 5.5vw, 72px);
+      line-height: 1;
+      display: block;
+    }
+
+    .work__row--nora .work__row-name {
+      color: #F0EBE1;
+      font-style: italic;
+    }
+
+    .work__row--flor .work__row-name {
+      color: #F5F0EA;
+      font-style: italic;
+    }
+
+    .work__row--palau .work__row-name {
+      color: #1A1814;
+      font-style: normal;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: clamp(28px, 4vw, 52px);
+      letter-spacing: -0.01em;
+    }
+
+    .work__row--bravo .work__row-name {
+      color: #E6A341;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: clamp(28px, 4.5vw, 60px);
+    }
+
+    /* Center: style label + description */
+    .work__row-center {
+      flex: 1;
+      padding: 0 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .work__row-style {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .work__row--nora .work__row-style  { color: var(--accent); }
+    .work__row--flor .work__row-style  { color: rgba(245,240,234,0.6); }
+    .work__row--palau .work__row-style { color: rgba(26,24,20,0.5); }
+    .work__row--bravo .work__row-style { color: #8C0902; }
+
+    .work__row-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: clamp(13px, 1.3vw, 15px);
+      line-height: 1.6;
+    }
+
+    .work__row--nora .work__row-desc  { color: rgba(240,235,225,0.55); }
+    .work__row--flor .work__row-desc  { color: rgba(245,240,234,0.65); }
+    .work__row--palau .work__row-desc { color: rgba(26,24,20,0.6); }
+    .work__row--bravo .work__row-desc { color: rgba(230,163,65,0.55); }
+
+    /* Right: CTA */
+    .work__row-cta {
+      flex: 0 0 auto;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      padding: 14px 28px;
+      transition: opacity 0.15s;
+    }
+
+    .work__row--nora .work__row-cta {
+      color: #F0EBE1;
+      border: 1px solid rgba(240,235,225,0.3);
+    }
+    .work__row--nora .work__row-cta:hover { border-color: rgba(240,235,225,0.7); }
+
+    .work__row--flor .work__row-cta {
+      color: var(--accent);
+      border: 1px solid rgba(192,168,137,0.45);
+    }
+    .work__row--flor .work__row-cta:hover { border-color: var(--accent); }
+
+    .work__row--palau .work__row-cta {
+      color: #233E65;
+      border: 1px solid rgba(35,62,101,0.35);
+    }
+    .work__row--palau .work__row-cta:hover { border-color: #233E65; }
+
+    .work__row--bravo .work__row-cta {
+      color: #E6A341;
+      border: 1px solid rgba(230,163,65,0.35);
+    }
+    .work__row--bravo .work__row-cta:hover { border-color: #E6A341; }
+
+    /* ─── PROCESS ───────────────────────────────────────────── */
+    #process {
+      padding: 100px 40px;
+    }
+
+    .process__heading {
+      font-size: clamp(28px, 4vw, 50px);
+      margin-bottom: 70px;
+    }
+
+    .process__steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .process__step {
+      padding: 0 40px 0 0;
+      border-right: 1px solid rgba(26,24,20,0.12);
+      margin-right: 40px;
+    }
+
+    .process__step:last-child {
+      border-right: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    .process__num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .process__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .process__desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
+      opacity: 0.7;
+    }
+
+    /* ─── PRICING ───────────────────────────────────────────── */
+    #pricing {
+      padding: 100px 40px;
+      background: #EDE8E0;
+    }
+
+    .pricing__heading {
+      font-size: clamp(28px, 4vw, 50px);
+      margin-bottom: 16px;
+    }
+
+    .pricing__sub {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      opacity: 0.65;
+      margin-bottom: 60px;
+    }
+
+    .pricing__cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-bottom: 2px;
+    }
+
+    .pricing__card {
+      padding: 52px 48px;
+      background: var(--bg);
+    }
+
+    .pricing__card--dark {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    .pricing__card-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: block;
+      opacity: 0.6;
+    }
+
+    .pricing__card--dark .pricing__card-label {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .pricing__price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .pricing__freq {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      opacity: 0.55;
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .pricing__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pricing__list li {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.5;
+      padding-left: 18px;
+      position: relative;
+      opacity: 0.8;
+    }
+
+    .pricing__list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .pricing__card--dark .pricing__list li {
+      color: var(--cream);
+    }
+
+    .pricing__addon {
+      background: var(--accent);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .pricing__addon-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--dark);
+    }
+
+    .pricing__addon-text strong {
+      font-weight: 400;
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .pricing__addon-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      color: var(--dark);
+      white-space: nowrap;
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────── */
+    #faq {
+      padding: 100px 40px;
+    }
+
+    #faq .container {
+      max-width: 740px;
+    }
+
+    .faq__heading {
+      font-size: clamp(28px, 4vw, 50px);
+      margin-bottom: 60px;
+    }
+
+    .faq__item {
+      border-top: 1px solid rgba(26,24,20,0.12);
+    }
+
+    .faq__item:last-child {
+      border-bottom: 1px solid rgba(26,24,20,0.12);
+    }
+
+    .faq__q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .faq__q .faq__icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+    }
+
+    .faq__q .faq__icon::before,
+    .faq__q .faq__icon::after {
+      content: '';
+      position: absolute;
+      background: var(--text);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .faq__q .faq__icon::before {
+      width: 12px;
+      height: 1px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq__q .faq__icon::after {
+      width: 1px;
+      height: 12px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq__item.open .faq__q .faq__icon {
+      opacity: 0.8;
+    }
+
+    .faq__item.open .faq__q .faq__icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
+
+    .faq__a {
+      display: none;
+      padding: 0 0 28px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text);
+      opacity: 0.72;
+      max-width: 560px;
+    }
+
+    .faq__item.open .faq__a {
+      display: block;
+    }
+
+    /* ─── CONTACT ───────────────────────────────────────────── */
+    #contact {
+      padding: 120px 40px;
+      background: var(--dark);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .contact__heading {
+      font-size: clamp(32px, 5vw, 64px);
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+
+    .contact__sub {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: clamp(15px, 1.6vw, 17px);
+      color: var(--cream);
+      opacity: 0.6;
+      max-width: 520px;
+      margin: 0 auto 52px;
+      line-height: 1.75;
+    }
+
+    .contact__btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn--cream {
+      background: var(--cream);
+      color: var(--dark);
+    }
+
+    .btn--cream:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .btn--outline-cream {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(240,235,225,0.35);
+    }
+
+    .btn--outline-cream:hover {
+      background: var(--cream);
+      color: var(--dark);
+    }
+
+    .contact__btns {
+      margin-bottom: 0;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    #footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(240,235,225,0.08);
+      padding: 24px 40px;
+      text-align: center;
+    }
+
+    .footer__text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      opacity: 0.3;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+
+      .container {
+        padding: 0 24px;
+      }
+
+      /* Wordmark */
+      #wordmark {
+        padding: 40px 24px 36px;
+      }
+
+      /* Nav */
+      #nav .nav__inner {
+        padding: 0 24px;
+        justify-content: flex-end;
+      }
+
+      .nav__links {
+        display: none;
+      }
+
+      .nav__lang {
+        display: none;
+      }
+
+      .nav__hamburger {
+        display: flex;
+      }
+
+      /* Hero */
+      #hero {
+        padding: 80px 24px;
+      }
+
+      /* Pitch */
+      #pitch {
+        padding: 72px 0;
+      }
+
+      #pitch .container {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 0 24px;
+      }
+
+      .pitch__graphic {
+        height: 300px;
+      }
+
+      /* Work */
+      .work__header {
+        padding: 72px 24px 40px;
+      }
+
+      .work__rows {
+        padding: 0 24px;
+      }
+
+      .work__row {
+        height: 200px;
+        padding: 0 28px;
+        flex-wrap: wrap;
+        align-content: center;
+        gap: 8px;
+      }
+
+      .work__row-center {
+        padding: 0 16px 0 0;
+        flex: 1;
+      }
+
+      .work__row-name {
+        font-size: clamp(28px, 7vw, 44px);
+      }
+
+      .work__row--palau .work__row-name,
+      .work__row--bravo .work__row-name {
+        font-size: clamp(22px, 6vw, 36px);
+      }
+
+      /* Process */
+      #process {
+        padding: 72px 24px;
+      }
+
+      .process__steps {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .process__step {
+        border-right: none;
+        border-bottom: 1px solid rgba(26,24,20,0.12);
+        padding: 0 0 48px;
+        margin: 0;
+      }
+
+      .process__step:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      /* Pricing */
+      #pricing {
+        padding: 72px 24px;
+      }
+
+      .pricing__cards {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing__card {
+        padding: 40px 28px;
+      }
+
+      .pricing__addon {
+        padding: 24px 28px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      /* FAQ */
+      #faq {
+        padding: 72px 24px;
+      }
+
+      /* Contact */
+      #contact {
+        padding: 80px 24px;
+      }
+
+      /* Footer */
+      #footer {
+        padding: 20px 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .contact__btns {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .contact__btns .btn {
+        text-align: center;
+      }
+    }
+
+    /* ─── Scroll offset for sticky nav ─────────────────────── */
+    section[id] {
+      scroll-margin-top: 64px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── WORDMARK ───────────────────────────────────────── -->
+  <div id="wordmark">
+    <span class="wordmark__title">Mano Studio</span>
+  </div>
+
+  <!-- ─── NAV ─────────────────────────────────────────────── -->
+  <header id="nav" role="banner">
+    <nav class="nav__inner" role="navigation" aria-label="Main navigation">
+      <ul class="nav__links" role="list">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav__lang" aria-label="Language selector">
+        <button class="active" onclick="setLang(this)">EN</button>
+        <span>/</span>
+        <button onclick="setLang(this)">ES</button>
+        <span>/</span>
+        <button onclick="setLang(this)">CAT</button>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile drawer -->
+  <nav class="nav__drawer" id="drawer" role="navigation" aria-label="Mobile navigation">
+    <a href="#work" class="drawer-link">Work</a>
+    <a href="#process" class="drawer-link">Process</a>
+    <a href="#pricing" class="drawer-link">Pricing</a>
+    <a href="#contact" class="drawer-link">Contact</a>
+    <div class="nav__lang">
+      <button class="active" onclick="setLang(this)">EN</button>
+      <span style="color:var(--cream);opacity:.3;font-size:10px">/</span>
+      <button onclick="setLang(this)">ES</button>
+      <span style="color:var(--cream);opacity:.3;font-size:10px">/</span>
+      <button onclick="setLang(this)">CAT</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ─── HERO ─────────────────────────────────────────────── -->
+    <section id="hero" aria-labelledby="hero-headline">
+      <div class="hero__inner">
+        <h1 class="hero__headline" id="hero-headline">
+          Your business deserves a website that works as hard as you do.
+        </h1>
+        <p class="hero__sub">
+          Hi, I'm Hannah. I build custom websites for small businesses in Barcelona and beyond. Beautiful, fast, and built around what makes your business yours — not copied from a template and called done.
+        </p>
+        <a href="#work" class="btn">See the work</a>
+      </div>
+    </section>
+
+    <!-- ─── PITCH ─────────────────────────────────────────────── -->
+    <section id="pitch" aria-label="About Mano Studio">
+      <div class="container">
+        <div class="pitch__copy">
+          <p class="pitch__text">
+            Your Instagram is full. Your tables are booked. Your shelves are stocked. But when someone Googles you, what do they actually find? Most great small businesses are hiding behind a bad website or nothing at all. Mano Studio builds sites that match the quality of what you already do. No templates. No page builders. Just your business, online the way it should be.
+          </p>
+          <p class="pitch__text">
+            Agencies take months and charge thousands. Freelancers on Fiverr deliver templates that look like templates. Squarespace leaves you alone with a blank screen and a headache. We do one thing: build custom websites for Barcelona businesses. In three to four weeks. For 500 EUR. Then we stay on to keep them alive. No upsells. No disappearing after launch.
+          </p>
+        </div>
+        <!-- Pure CSS website mockup -->
+        <div class="pitch__graphic" aria-hidden="true">
+          <div class="g-rect g-rect--bg-slab"></div>
+          <div class="g-rect g-rect--frame"></div>
+          <div class="g-rect g-rect--nav"></div>
+          <div class="g-rect g-rect--nav-dot" style="left:200px"></div>
+          <div class="g-rect g-rect--nav-dot" style="left:238px"></div>
+          <div class="g-rect g-rect--nav-dot" style="left:276px"></div>
+          <div class="g-rect g-rect--hero"></div>
+          <div class="g-rect g-rect--accent-card"></div>
+          <div class="g-rect g-rect--h1"></div>
+          <div class="g-rect g-rect--h2"></div>
+          <div class="g-rect g-rect--b1"></div>
+          <div class="g-rect g-rect--b2"></div>
+          <div class="g-rect g-rect--b3"></div>
+          <div class="g-rect g-rect--cta"></div>
+          <div class="g-rect g-rect--float"></div>
+          <div class="g-rect g-rect--float-line1"></div>
+          <div class="g-rect g-rect--float-line2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── WORK ─────────────────────────────────────────────── -->
+    <section id="work" aria-labelledby="work-heading">
+      <div class="work__header">
+        <span class="section-label">Selected work</span>
+        <h2 class="work__heading" id="work-heading">Four directions.<br>Endless possibilities.</h2>
+        <p class="work__subline">Explore your options.</p>
+      </div>
+
+      <div class="work__rows">
+      <!-- Row 1: Osteria Nora -->
+      <article class="work__row work__row--nora" aria-label="Osteria Nora demo">
+        <div class="work__row-left">
+          <span class="work__row-name">Osteria Nora</span>
+        </div>
+        <div class="work__row-center">
+          <span class="work__row-style">Slow &amp; Warm</span>
+          <p class="work__row-desc">Your online presence should match your reputation.</p>
+        </div>
+        <a href="#" class="work__row-cta">Explore →</a>
+      </article>
+
+      <!-- Row 2: Flor & Rama -->
+      <article class="work__row work__row--flor" aria-label="Flor and Rama demo">
+        <div class="work__row-left">
+          <span class="work__row-name">Flor &amp; Rama</span>
+        </div>
+        <div class="work__row-center">
+          <span class="work__row-style">Fresh &amp; Earthy</span>
+          <p class="work__row-desc">Turn Instagram followers into actual customers.</p>
+        </div>
+        <a href="#" class="work__row-cta">Explore →</a>
+      </article>
+
+      <!-- Row 3: Palau Properties -->
+      <article class="work__row work__row--palau" aria-label="Palau Properties demo">
+        <div class="work__row-left">
+          <span class="work__row-name">Palau Properties</span>
+        </div>
+        <div class="work__row-center">
+          <span class="work__row-style">Crisp &amp; Considered</span>
+          <p class="work__row-desc">Look premium without the premium agency budget.</p>
+        </div>
+        <a href="#" class="work__row-cta">Explore →</a>
+      </article>
+
+      <!-- Row 4: Bar Bravo -->
+      <article class="work__row work__row--bravo" aria-label="Bar Bravo demo">
+        <div class="work__row-left">
+          <span class="work__row-name">Bar Bravo</span>
+        </div>
+        <div class="work__row-center">
+          <span class="work__row-style">Bold &amp; Local</span>
+          <p class="work__row-desc">A place online that makes people walk in before they've ever been.</p>
+        </div>
+        <a href="#" class="work__row-cta">Explore →</a>
+      </article>
+
+      </div><!-- /.work__rows -->
+    </section>
+
+    <!-- ─── PROCESS ───────────────────────────────────────────── -->
+    <section id="process" aria-labelledby="process-heading">
+      <div class="container">
+        <span class="section-label">How it works</span>
+        <h2 class="process__heading" id="process-heading">Simple from start to finish.</h2>
+        <div class="process__steps">
+
+          <div class="process__step">
+            <span class="process__num">01</span>
+            <h3 class="process__title">We talk</h3>
+            <p class="process__desc">A 30-minute call to understand your business, your goals, and what's not working right now. No pressure, no pitch deck. Just a real conversation.</p>
+          </div>
+
+          <div class="process__step">
+            <span class="process__num">02</span>
+            <h3 class="process__title">We build</h3>
+            <p class="process__desc">We design and develop your site from scratch. Two rounds of revisions included. You see it before it goes live and nothing launches without your sign-off.</p>
+          </div>
+
+          <div class="process__step">
+            <span class="process__num">03</span>
+            <h3 class="process__title">We launch</h3>
+            <p class="process__desc">Your site goes live. We handle the technical side completely. And if you choose the Care Plan, we stay on to keep everything updated and running.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PRICING ───────────────────────────────────────────── -->
+    <section id="pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+        <span class="section-label">Pricing</span>
+        <h2 class="pricing__heading" id="pricing-heading">Honest pricing.<br>No hidden fees.</h2>
+        <p class="pricing__sub">Everything you need. Nothing you don't.</p>
+
+        <div class="pricing__cards">
+
+          <div class="pricing__card">
+            <span class="pricing__card-label">Build</span>
+            <div class="pricing__price">500 <span style="font-size:28px;opacity:0.5">EUR</span></div>
+            <span class="pricing__freq">one-time</span>
+            <ul class="pricing__list">
+              <li>Custom design, built from scratch</li>
+              <li>Up to 5 pages</li>
+              <li>Mobile-responsive</li>
+              <li>Contact form &amp; Google Maps</li>
+              <li>Two rounds of revisions</li>
+              <li>Delivered in 3–4 weeks</li>
+              <li>You own everything</li>
+            </ul>
+          </div>
+
+          <div class="pricing__card pricing__card--dark">
+            <span class="pricing__card-label">Care Plan</span>
+            <div class="pricing__price">100 <span style="font-size:28px;opacity:0.5">EUR</span></div>
+            <span class="pricing__freq">per month · cancel anytime</span>
+            <ul class="pricing__list">
+              <li>Hosting &amp; domain management</li>
+              <li>Security updates &amp; backups</li>
+              <li>Up to 2 content changes/month</li>
+              <li>Priority email support</li>
+              <li>Performance monitoring</li>
+              <li>Annual design refresh</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="pricing__addon">
+          <div class="pricing__addon-text">
+            <strong>Newsletter Add-on</strong>
+            Monthly email to your list — written, designed, and sent for you.
+          </div>
+          <div class="pricing__addon-price">+ 30 EUR<span style="font-size:16px;opacity:0.6">/mo</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── FAQ ───────────────────────────────────────────────── -->
+    <section id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <span class="section-label">FAQ</span>
+        <h2 class="faq__heading" id="faq-heading">Questions.</h2>
+
+        <div class="faq__list">
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              Can I cancel the Care Plan?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a">Yes, anytime. There are no contracts, no minimum terms, and no cancellation fees. Just let us know by the end of the month and we'll wrap things up cleanly. You keep your site and all your files.</div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              Do I own my domain?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a">Absolutely. Your domain is registered in your name, under your account. Same for your hosting. We manage it for you on the Care Plan, but it's always yours. If you ever leave, we hand everything over immediately, no questions asked.</div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              What if I need more than 2 revisions?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a">The Build package includes two rounds of revisions — which is usually more than enough. If you need more, we can agree on additional rounds at a flat rate. In practice, we front-load the process with good questions so there are rarely surprises.</div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              What counts as a change on the Care Plan?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a">Anything that takes us under an hour — updating text, swapping a photo, adding a new menu item, changing opening hours. Two of those per month are included. Larger updates (new pages, new sections) are quoted separately and always at a fair rate.</div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              Can I see the contract first?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a">Of course. We send a simple, plain-language agreement before anything starts. No legal jargon. It covers what we'll build, the timeline, payment terms, and what happens if things change. You should always know what you're agreeing to.</div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              Do you speak Spanish or Catalan?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a">Yes — we work comfortably in English, Spanish, and Catalan. You can choose whichever feels most natural to you. Our contracts and communications can be in any of the three.</div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              What if I want to switch developers?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a">We'll give you everything — all your files, login credentials, documentation, and a handover call if needed. We build on standard technologies so any competent developer can pick up where we left off. No lock-in, ever.</div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              How do I request changes?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a">A simple WhatsApp message or email is all it takes. No ticket systems, no forms, no waiting for a project manager. You talk to us directly. We aim to acknowledge all requests within one business day.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT ───────────────────────────────────────────── -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <span class="section-label" style="color:var(--accent)">Get in touch</span>
+        <h2 class="contact__heading" id="contact-heading">Ready to be found?</h2>
+        <p class="contact__sub">
+          You've built something worth showing. Let's make sure the right people can find it.
+        </p>
+        <div class="contact__btns">
+          <a href="https://wa.me/34600000000" class="btn btn--cream">WhatsApp</a>
+          <a href="https://cal.com" class="btn btn--outline-cream">Book a call</a>
+          <a href="mailto:hello@manostudio.co" class="btn btn--outline-cream">Email us</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── FOOTER ───────────────────────────────────────────── -->
+  <footer id="footer" role="contentinfo">
+    <p class="footer__text">Mano Studio &nbsp;·&nbsp; Barcelona &nbsp;·&nbsp; hello@manostudio.co &nbsp;·&nbsp; 2026</p>
+  </footer>
+
+  <!-- ─── JS ───────────────────────────────────────────────── -->
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('drawer');
+    const drawerLinks = document.querySelectorAll('.drawer-link');
+
+    function closeDrawer() {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    // Language toggle
+    function setLang(btn) {
+      const group = btn.closest('.nav__lang');
+      group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq__q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq__item');
+        const isOpen = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+      });
+    });
+  </script>
+
+</body>
+</html>

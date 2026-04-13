@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Osteria Nora — El Born, Barcelona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500;1,600&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── CSS VARIABLES ─────────────────────────────────── */
+    :root {
+      --bg:           #100D0A;
+      --bg-alt:       #1A1410;
+      --text:         #F0E6D3;
+      --text-muted:   #B8A898;
+      --accent:       #C17F3E;
+      --font-heading: 'Cormorant Garamond', serif;
+      --font-body:    'Inter', sans-serif;
+    }
+
+    /* ─── RESET & GLOBAL ────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ─── REUSABLE BUTTON ───────────────────────────────── */
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--accent);
+      color: var(--bg);
+      background: var(--accent);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    /* ─── SECTION 1: NAV ────────────────────────────────── */
+    section.nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--bg-alt);
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav__inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover {
+      color: var(--text);
+    }
+
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--text-muted);
+    }
+
+    .nav__mobile-menu {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--bg-alt);
+      padding: 24px 40px;
+      z-index: 99;
+    }
+
+    .nav__mobile-menu.is-open {
+      display: block;
+    }
+
+    .nav__mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .nav__mobile-menu a {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .nav__mobile-menu a:hover {
+      color: var(--text);
+    }
+
+    /* ─── SECTION 2: HERO ───────────────────────────────── */
+    section.hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 7, 4, 0.6);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .hero__label {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero__title {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      font-style: italic;
+      font-size: 96px;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .hero__sub {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    /* ─── SECTION 3: STORY ──────────────────────────────── */
+    section.story {
+      background: var(--bg);
+      padding: 80px 40px 48px;
+    }
+
+    .story__inner {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .story__text {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text-muted);
+    }
+
+    .story__text + .story__text {
+      margin-top: 24px;
+    }
+
+    .story__quote {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 38px;
+      color: var(--text-muted);
+      line-height: 1.2;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    /* ─── SECTION 4: MEET THE CHEF ──────────────────────── */
+    section.chef {
+      background: var(--bg);
+      padding: 40px 0;
+    }
+
+    .chef__inner {
+      padding: 0 80px;
+    }
+
+    .chef__rule {
+      width: 100%;
+      height: 0.5px;
+      background: #EDE0CC;
+    }
+
+    .chef__rule--top {
+      margin-bottom: 40px;
+    }
+
+    .chef__rule--bottom {
+      margin-top: 40px;
+    }
+
+    .chef__row {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .chef__image-col {
+      flex: 0 0 14%;
+    }
+
+    .chef__image-col img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .chef__text-col {
+      flex: 0 0 48%;
+    }
+
+    .chef__label {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .chef__name {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 48px;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .chef__bio {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--text-muted);
+    }
+
+    .chef__title {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 24px;
+    }
+
+    /* ─── SECTION 5: MENU ───────────────────────────────── */
+    section.menu {
+      background: var(--bg);
+      padding: 60px 40px;
+    }
+
+    .menu__card {
+      background: #EDE0CC;
+      border-radius: 8px;
+      padding: 64px 56px;
+      max-width: 620px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .menu__heading {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 56px;
+      color: #1A1410;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .menu__sub {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8A7A6A;
+      margin-bottom: 32px;
+    }
+
+    .menu__rule {
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 56px;
+    }
+
+    .menu__section {
+      margin-bottom: 56px;
+    }
+
+    .menu__section:last-child {
+      margin-bottom: 0;
+    }
+
+    .menu__section-label {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #8A7A6A;
+      margin-bottom: 24px;
+    }
+
+    .menu__item {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .menu__item:last-child {
+      margin-bottom: 0;
+    }
+
+    .menu__dish {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 20px;
+      color: #1A1410;
+      white-space: nowrap;
+    }
+
+    .menu__dots {
+      flex: 1;
+      border-bottom: 1px dotted #C8B89A;
+      margin-bottom: 4px;
+    }
+
+    .menu__price {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 13px;
+      color: #8A7A6A;
+      white-space: nowrap;
+    }
+
+    /* ─── SECTION 6: GALLERY ────────────────────────────── */
+    section.gallery {
+      background: var(--bg);
+    }
+
+    .gallery__grid {
+      display: flex;
+      gap: 2px;
+    }
+
+    .gallery__item {
+      position: relative;
+      flex: 0 0 calc(25% - 1.5px);
+      height: 380px;
+      overflow: hidden;
+    }
+
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery__item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 7, 4, 0.15);
+    }
+
+    /* ─── SECTION 7: RESERVE ────────────────────────────── */
+    section.reserve {
+      background: var(--bg);
+      padding: 120px 40px;
+      text-align: center;
+    }
+
+    .reserve__heading {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 64px;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .reserve__hours {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+
+    .reserve__address {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 32px;
+    }
+
+    /* ─── SECTION 8: FOOTER ─────────────────────────────── */
+    section.footer {
+      background: var(--bg);
+      padding: 48px 40px;
+      text-align: center;
+      border-top: 1px solid var(--bg-alt);
+    }
+
+    .footer__name {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .footer__details {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .footer__copy {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ─── BACK LINK ─────────────────────────────────────── */
+    .back-link {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      z-index: 200;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ─── MOBILE RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 768px) {
+
+      /* Nav */
+      .nav__links {
+        display: none;
+      }
+
+      .nav__hamburger {
+        display: flex;
+      }
+
+      .nav__inner {
+        padding: 0 24px;
+      }
+
+      /* Hero */
+      .hero__title {
+        font-size: 56px;
+      }
+
+      /* Story */
+      section.story {
+        padding: 60px 24px;
+      }
+
+      /* Chef */
+      section.chef {
+        padding: 60px 0;
+      }
+
+      .chef__inner {
+        padding: 0 40px;
+      }
+
+      .chef__row {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .chef__image-col {
+        flex: none;
+        width: 100%;
+      }
+
+      .chef__text-col {
+        flex: none;
+        width: 100%;
+      }
+
+      .chef__name {
+        font-size: 40px;
+      }
+
+      /* Menu */
+      section.menu {
+        padding: 60px 24px;
+      }
+
+      .menu__card {
+        padding: 40px 24px;
+      }
+
+      .menu__heading {
+        font-size: 42px;
+      }
+
+      .menu__dish {
+        font-size: 18px;
+        white-space: normal;
+      }
+
+      /* Gallery */
+      .gallery__grid {
+        flex-wrap: wrap;
+        gap: 2px;
+      }
+
+      .gallery__item {
+        flex: 0 0 calc(50% - 1px);
+        height: 220px;
+      }
+
+      /* Reserve */
+      section.reserve {
+        padding: 60px 24px;
+      }
+
+      .reserve__heading {
+        font-size: 40px;
+      }
+
+      /* Footer */
+      section.footer {
+        padding: 48px 24px;
+      }
+
+      /* Back link */
+      .back-link {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── SECTION 1: NAV ─────────────────────────────────── -->
+  <section class="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">Osteria Nora</a>
+      <nav>
+        <ul class="nav__links">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#reserve">Reserve</a></li>
+        </ul>
+      </nav>
+      <button class="nav__hamburger" aria-label="Open menu" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Mobile menu (outside nav for positioning) -->
+  <div class="nav__mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#menu" class="mobile-link">Menu</a></li>
+      <li><a href="#story" class="mobile-link">Our Story</a></li>
+      <li><a href="#reserve" class="mobile-link">Reserve</a></li>
+    </ul>
+  </div>
+
+  <!-- ─── SECTION 2: HERO ───────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__label">El Born, Barcelona</p>
+      <h1 class="hero__title">Osteria Nora</h1>
+      <p class="hero__sub">Handmade pasta. Natural wine. Tuesday through Sunday.</p>
+      <a href="#reserve" class="btn">Reserve a table</a>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 3: STORY ──────────────────────────────── -->
+  <section class="story" id="story">
+    <div class="story__inner">
+      <p class="story__text">Nora opened in 2019 in a ground-floor space on Carrer del Rec. The walls are old stone. The tables are close together. We make pasta every morning and write the menu around whatever came in from the market.</p>
+      <p class="story__text">We work with small producers from Catalonia and Italy. The wine list is short and changes often. Reservations are recommended. Walk-ins when we have space.</p>
+      <p class="story__quote">dedicated to the enjoyment of eating and drinking.</p>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 4: MEET THE CHEF ─────────────────────── -->
+  <section class="chef">
+    <div class="chef__inner">
+      <div class="chef__rule chef__rule--top"></div>
+      <div class="chef__row">
+        <div class="chef__image-col">
+          <img src="images/chef.jpg" alt="Marco Ferretti" />
+        </div>
+        <div class="chef__text-col">
+          <p class="chef__label">In the kitchen</p>
+          <h2 class="chef__name">Marco Ferretti</h2>
+          <p class="chef__bio">Marco is the architect of our evenings. A chef who prefers the shadows of the kitchen to the spotlight of the dining room. His philosophy is simple: the ingredient is the hero, the wine is the companion, and the clock doesn't exist once you walk through our doors.</p>
+          <p class="chef__title">Head Chef &amp; Co-Founder</p>
+        </div>
+      </div>
+      <div class="chef__rule chef__rule--bottom"></div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 5: MENU ───────────────────────────────── -->
+  <section class="menu" id="menu">
+    <div class="menu__card">
+      <h2 class="menu__heading">Menu</h2>
+      <p class="menu__sub">Seasonal. Subject to change.</p>
+      <div class="menu__rule"></div>
+
+      <!-- Antipasti -->
+      <div class="menu__section">
+        <p class="menu__section-label">Antipasti</p>
+        <div class="menu__item">
+          <span class="menu__dish">Acciughe al verde</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">9</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Burrata, pomodori arrosto, basilico</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">12</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Mortadella, pistacchio, pane tostato</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">10</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Carciofi alla romana</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">11</span>
+        </div>
+      </div>
+
+      <!-- Primi -->
+      <div class="menu__section">
+        <p class="menu__section-label">Primi</p>
+        <div class="menu__item">
+          <span class="menu__dish">Tagliatelle al ragù di manzo</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">18</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Pappardelle al cinghiale</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">20</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Cacio e pepe, tonnarelli</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">16</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Risotto al limone e gamberi</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">22</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Gnocchi burro e salvia</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">15</span>
+        </div>
+      </div>
+
+      <!-- Secondi -->
+      <div class="menu__section">
+        <p class="menu__section-label">Secondi</p>
+        <div class="menu__item">
+          <span class="menu__dish">Pollo arrosto, patate al rosmarino</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">22</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Baccalà mantecato, polenta</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">24</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Agnello scottadito, salsa verde</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">26</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Salmone in crosta di erbe</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">23</span>
+        </div>
+      </div>
+
+      <!-- Dolci -->
+      <div class="menu__section">
+        <p class="menu__section-label">Dolci</p>
+        <div class="menu__item">
+          <span class="menu__dish">Tiramisù della casa</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">8</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Panna cotta, caramello salato</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">7</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Torta di ricotta e limone</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">8</span>
+        </div>
+        <div class="menu__item">
+          <span class="menu__dish">Gelato artigianale</span>
+          <span class="menu__dots"></span>
+          <span class="menu__price">6</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── SECTION 6: GALLERY ────────────────────────────── -->
+  <section class="gallery">
+    <div class="gallery__grid">
+      <div class="gallery__item">
+        <img src="images/gallery-1.jpg" alt="Dough hands" />
+      </div>
+      <div class="gallery__item">
+        <img src="images/gallery-2.jpg" alt="Bread and olive oil" />
+      </div>
+      <div class="gallery__item">
+        <img src="images/gallery-3.jpg" alt="Parmesan grated over pasta" />
+      </div>
+      <div class="gallery__item">
+        <img src="images/gallery-4.jpg" alt="Carbonara on terracotta plate" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 7: RESERVE ────────────────────────────── -->
+  <section class="reserve" id="reserve">
+    <h2 class="reserve__heading">Come for dinner.</h2>
+    <p class="reserve__hours">Wednesday through Sunday, from 19:30</p>
+    <div style="margin-top: 40px;">
+      <a href="#" class="btn">Reserve a table</a>
+    </div>
+    <p class="reserve__address">Carrer del Rec 28, El Born · Barcelona</p>
+  </section>
+
+  <!-- ─── SECTION 8: FOOTER ─────────────────────────────── -->
+  <section class="footer">
+    <p class="footer__name">Osteria Nora</p>
+    <p class="footer__details">Carrer del Rec 28 · El Born · Barcelona · +34 933 00 00 00 · @osteria.nora</p>
+    <p class="footer__copy">© 2026</p>
+  </section>
+
+  <!-- ─── BACK LINK ─────────────────────────────────────── -->
+  <a href="index.html" class="back-link">← Mano Studio</a>
+
+  <script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('is-open');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+      });
+    });
+  </script>
+
+</body>
+</html>

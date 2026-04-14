@@ -551,6 +551,11 @@
       background: #210100;
     }
 
+    /* Row 5 — Cafetera Bonita / green */
+    .work__row--bonita {
+      background: #26422A;
+    }
+
     /* Left: big business name */
     .work__row-left {
       flex: 0 0 auto;
@@ -593,6 +598,11 @@
       font-size: clamp(28px, 4.5vw, 60px);
     }
 
+    .work__row--bonita .work__row-name {
+      color: #FFEEBC;
+      font-style: italic;
+    }
+
     /* Center: style label + description */
     .work__row-center {
       flex: 1;
@@ -626,6 +636,8 @@
     .work__row--flor .work__row-desc  { color: rgba(245,240,234,0.65); }
     .work__row--palau .work__row-desc { color: rgba(26,24,20,0.6); }
     .work__row--bravo .work__row-desc { color: rgba(230,163,65,0.55); }
+    .work__row--bonita .work__row-style { color: #EA672D; }
+    .work__row--bonita .work__row-desc  { color: rgba(255,238,188,0.55); }
 
     /* Right: CTA */
     .work__row-cta {
@@ -662,6 +674,12 @@
       border: 1px solid rgba(230,163,65,0.35);
     }
     .work__row--bravo .work__row-cta:hover { border-color: #E6A341; }
+
+    .work__row--bonita .work__row-cta {
+      color: #FFEEBC;
+      border: 1px solid rgba(255,238,188,0.3);
+    }
+    .work__row--bonita .work__row-cta:hover { border-color: rgba(255,238,188,0.7); }
 
     /* ─── PROCESS ───────────────────────────────────────────── */
     #process {
@@ -1322,6 +1340,17 @@
           <p class="work__row-desc">A place online that makes people walk in before they've ever been.</p>
         </div>
         <a href="bar-bravo.html" class="work__row-cta">Explore →</a>
+      </article>
+
+      <!-- Row 5: Cafetera Bonita -->
+      <article class="work__row work__row--bonita" aria-label="Cafetera Bonita demo">
+        <div class="work__row-left">
+          <span class="work__row-name">Cafetera Bonita</span>
+        </div>
+        <div class="work__row-center">
+          <span class="work__row-style">Coffee Shop · Gràcia</span>
+        </div>
+        <a href="cafetera-bonita.html" class="work__row-cta">Explore →</a>
       </article>
 
       </div><!-- /.work__rows -->

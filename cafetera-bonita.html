@@ -49,8 +49,12 @@
     }
 
     nav.scrolled {
-      background: var(--vanilla);
+      background: var(--green);
       box-shadow: 0 1px 12px rgba(26, 16, 8, 0.08);
+    }
+
+    nav.scrolled .nav-logo {
+      color: var(--flame);
     }
 
     /* logo */
@@ -210,8 +214,8 @@
     }
 
     .btn-primary {
-      background: var(--blue);
-      color: var(--text-dark);
+      background: var(--flame);
+      color: var(--vanilla);
       border: none;
       padding: 14px 28px;
       font-family: 'DM Sans', sans-serif;
@@ -243,10 +247,11 @@
     .hero-illustration {
       position: absolute;
       bottom: 0;
-      right: -80px;
+      right: 80px;
       width: 200px;
       object-fit: contain;
-      mix-blend-mode: multiply;
+      mix-blend-mode: screen;
+      filter: invert(1) sepia(1) saturate(2) hue-rotate(170deg);
       display: block;
     }
 
@@ -287,6 +292,683 @@
       text-decoration: none;
     }
 
+    /* === MARQUEE BANNER === */
+    .marquee-banner {
+      width: 100%;
+      height: 65px;
+      background: var(--flame);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 22s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .marquee-track span {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--vanilla);
+      padding-right: 2em;
+    }
+
+    /* === DARK CTA === */
+    .dark-cta {
+      background: var(--green);
+      padding: 100px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-col-left,
+    .cta-col-right {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .cta-col-left {
+      left: 16px;
+    }
+
+    .cta-col-right {
+      right: 16px;
+    }
+
+    .cta-col-left img,
+    .cta-col-right img {
+      width: 200px;
+      height: 33.33%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .dark-cta-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 220px;
+    }
+
+    .dark-cta-name {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 52px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--vanilla);
+    }
+
+    .dark-cta-body {
+      max-width: 520px;
+      margin: 20px auto 0;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--vanilla);
+      opacity: 0.8;
+    }
+
+    .dark-cta-link {
+      display: block;
+      margin-top: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: var(--vanilla);
+      text-decoration: underline;
+    }
+
+    .dark-cta-buttons {
+      margin-top: 48px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .dark-cta-btn {
+      display: block;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 238, 188, 0.3);
+      cursor: pointer;
+      transition: background 0.3s;
+      text-decoration: none;
+    }
+
+    .dark-cta-btn--filled {
+      background: var(--vanilla);
+      color: var(--green);
+    }
+
+    .dark-cta-btn--filled:hover {
+      background: #f0e0a0;
+    }
+
+    .dark-cta-btn--outline {
+      background: transparent;
+      color: var(--vanilla);
+    }
+
+    .dark-cta-btn--outline:hover {
+      background: rgba(255, 238, 188, 0.08);
+    }
+
+    /* === HOURS STRIP === */
+    .hours-strip {
+      background: var(--blue);
+      padding: 32px 40px;
+      text-align: center;
+    }
+
+    .hours-strip-text {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 22px;
+      color: var(--green);
+      letter-spacing: 0.06em;
+    }
+
+    /* === MENU === */
+    .menu-section {
+      background: var(--vanilla);
+      padding: 100px 80px;
+      position: relative;
+    }
+
+    .menu-watermark {
+      position: absolute;
+      right: 40px;
+      top: 60px;
+      width: 160px;
+      object-fit: contain;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .menu-heading {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 48px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-align: center;
+    }
+
+    .menu-subheading {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 64px;
+      margin-top: 12px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+    }
+
+    .menu-col-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 22px;
+      color: var(--green);
+      border-bottom: 2px solid var(--flame);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(26, 16, 8, 0.08);
+      padding: 10px 0;
+    }
+
+    .menu-item-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--text-dark);
+    }
+
+    .menu-item-price {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--flame);
+    }
+
+    .menu-small {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* === PHOTO CAROUSEL === */
+    .carousel-section {
+      background: var(--bistre);
+      padding-top: 80px;
+      padding-bottom: 0;
+    }
+
+    .carousel-heading {
+      padding: 0 80px;
+      margin-bottom: 48px;
+    }
+
+    .carousel-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 56px;
+      letter-spacing: 0.03em;
+      color: var(--vanilla);
+    }
+
+    .carousel-body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--vanilla);
+      opacity: 0.7;
+      max-width: 480px;
+      line-height: 1.8;
+      margin-top: 16px;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-card {
+      width: 340px;
+      flex-shrink: 0;
+      height: 480px;
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
+    }
+
+    .carousel-card:active {
+      cursor: grabbing;
+    }
+
+    .carousel-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .carousel-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--vanilla);
+      background: linear-gradient(to bottom, transparent, rgba(26, 16, 8, 0.55));
+    }
+
+    /* === HOW WE DO IT === */
+    .how-section {
+      background: var(--vanilla);
+      padding: 100px 80px;
+      position: relative;
+    }
+
+    .how-watermark {
+      position: absolute;
+      right: 60px;
+      top: 60px;
+      width: 220px;
+      object-fit: contain;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    .how-heading {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 48px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+      text-align: center;
+    }
+
+    .how-number {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 80px;
+      color: var(--flame);
+      opacity: 0.3;
+      line-height: 1;
+      display: block;
+    }
+
+    .how-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-top: -8px;
+      display: block;
+    }
+
+    .how-body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 260px;
+      margin: 16px auto 0;
+    }
+
+    /* === FIND US === */
+    .find-us-section {
+      background: var(--green);
+      padding: 100px 80px;
+    }
+
+    .find-us-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .find-us-heading {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 52px;
+      color: var(--vanilla);
+      letter-spacing: 0.03em;
+    }
+
+    .find-us-address {
+      margin-top: 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--vanilla);
+      opacity: 0.8;
+      line-height: 2.4;
+    }
+
+    .find-us-metro {
+      display: block;
+      margin-top: 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--vanilla);
+      opacity: 0.5;
+    }
+
+    .find-us-whatsapp {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--flame);
+      color: var(--vanilla);
+      padding: 12px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .find-us-form {
+      background: var(--vanilla);
+      padding: 48px;
+    }
+
+    .find-us-form-heading {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 28px;
+      color: var(--green);
+      margin-bottom: 32px;
+    }
+
+    .form-field {
+      display: block;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid rgba(26, 16, 8, 0.2);
+      background: transparent;
+      padding: 12px 0;
+      margin-bottom: 24px;
+      color: var(--text-dark);
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+    }
+
+    .form-field::placeholder {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      color: var(--text-muted);
+    }
+
+    .form-field--textarea {
+      resize: none;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--flame);
+      color: var(--vanilla);
+      padding: 16px;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.3s;
+    }
+
+    .form-submit:hover {
+      background: var(--bistre);
+    }
+
+    /* === WORK WITH US === */
+    .work-section {
+      background: var(--vanilla);
+      padding: 100px 80px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .work-heading {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 52px;
+      color: var(--green);
+      letter-spacing: 0.03em;
+    }
+
+    .work-body {
+      margin-top: 24px;
+      max-width: 380px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    .work-openings {
+      display: block;
+      margin-top: 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--flame);
+    }
+
+    .work-form {
+      background: var(--green);
+      padding: 48px;
+    }
+
+    .work-form-heading {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 28px;
+      color: var(--vanilla);
+      margin-bottom: 32px;
+    }
+
+    .form-field--inverted {
+      border-bottom: 1px solid rgba(255, 238, 188, 0.25);
+      color: var(--vanilla);
+    }
+
+    .form-field--inverted::placeholder {
+      color: rgba(255, 238, 188, 0.45);
+    }
+
+    /* === FOOTER === */
+    .site-footer {
+      background: var(--bistre);
+      padding: 40px 80px;
+      border-top: 1px solid rgba(255, 238, 188, 0.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--vanilla);
+    }
+
+    .footer-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: var(--vanilla);
+      opacity: 0.45;
+      margin-top: 8px;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-nav a {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--vanilla);
+      opacity: 0.6;
+      text-decoration: none;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .footer-social a {
+      opacity: 0.6;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--vanilla);
+    }
+
+    .footer-copy {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: var(--vanilla);
+      opacity: 0.45;
+    }
+
+    /* === WHATSAPP FLOAT === */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--flame);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(234, 103, 45, 0.4);
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+    }
+
+    .wa-float svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--vanilla);
+    }
+
     /* === MOBILE === */
     @media (max-width: 767px) {
       nav {
@@ -323,6 +1005,75 @@
       .hero-illustration {
         display: none;
       }
+
+      .dark-cta {
+        padding: 60px 24px;
+      }
+
+      .cta-col-left,
+      .cta-col-right {
+        display: none;
+      }
+
+      .dark-cta-inner {
+        padding: 0 24px;
+      }
+
+      .dark-cta-name {
+        font-size: 36px;
+      }
+
+      .menu-section {
+        padding: 60px 24px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .carousel-heading {
+        padding: 48px 24px;
+        margin-bottom: 0;
+      }
+
+      .carousel-card {
+        width: 280px;
+        height: 380px;
+      }
+
+      .how-section {
+        padding: 60px 24px;
+      }
+
+      .how-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .find-us-section {
+        padding: 60px 24px;
+      }
+
+      .find-us-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-section {
+        padding: 60px 24px;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .site-footer {
+        padding: 40px 24px;
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-right {
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -336,6 +1087,7 @@
       <li><a href="#">Our Story</a></li>
       <li><a href="#">The Beans</a></li>
       <li><a href="#">Find Us</a></li>
+      <li><a href="work-with-us.html">Work With Us</a></li>
     </ul>
     <button class="burger" aria-label="Open menu">
       <span></span>
@@ -351,6 +1103,7 @@
     <a href="#">Our Story</a>
     <a href="#">The Beans</a>
     <a href="#">Find Us</a>
+    <a href="work-with-us.html">Work With Us</a>
   </div>
 
   <!-- HERO -->
@@ -370,7 +1123,7 @@
         <a href="#" class="btn-primary">See the Menu</a>
         <a href="#" class="btn-secondary">Our Story →</a>
       </div>
-      <img class="hero-illustration" src="images/coffeeshop-1.jpg" alt="" />
+      <img class="hero-illustration" src="images/coffeeshop-13.png" alt="" />
     </div>
 
     <!-- right panel -->
@@ -380,6 +1133,208 @@
     </div>
 
   </section>
+
+  <!-- MARQUEE BANNER -->
+  <div class="marquee-banner">
+    <div class="marquee-track">
+      <span>SINGLE ORIGIN · GRÀCIA, BARCELONA · ROASTED TO ORDER · SLOW MORNINGS · ETHIOPIA · COLOMBIA · GUATEMALA · SPECIALTY COFFEE SINCE 2019 ·&nbsp;</span>
+      <span>SINGLE ORIGIN · GRÀCIA, BARCELONA · ROASTED TO ORDER · SLOW MORNINGS · ETHIOPIA · COLOMBIA · GUATEMALA · SPECIALTY COFFEE SINCE 2019 ·&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- DARK CTA -->
+  <section class="dark-cta cta-section">
+    <div class="cta-col-left">
+      <img src="images/coffeeshop-5.jpg" alt="" />
+      <img src="images/coffeeshop-7.jpg" alt="" />
+      <img src="images/coffeeshop-8.png" alt="" />
+    </div>
+    <div class="cta-col-right">
+      <img src="images/coffeeshop-6.jpg" alt="" />
+      <img src="images/coffeeshop-9.jpg" alt="" />
+      <img src="images/coffeeshop-8.jpg" alt="" />
+    </div>
+    <div class="dark-cta-inner">
+      <p class="dark-cta-name">CAFETERA BONITA</p>
+      <p class="dark-cta-body">A charming corner of Gràcia where slow mornings and good beans converge. Specialty coffee made by hand, sourced with intention, served with care.</p>
+      <a href="#" class="dark-cta-link">Read more about us →</a>
+      <div class="dark-cta-buttons">
+        <a href="#" class="dark-cta-btn dark-cta-btn--filled">( Our Menu )</a>
+        <a href="#" class="dark-cta-btn dark-cta-btn--outline">( Find Us )</a>
+        <a href="#" class="dark-cta-btn dark-cta-btn--outline">( Get in Touch )</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOURS STRIP -->
+  <section class="hours-strip">
+    <p class="hours-strip-text">MON–FRI 8:00–18:00 · SAT–SUN 9:00–19:00</p>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu-section">
+    <h2 class="menu-heading">What We Serve</h2>
+    <p class="menu-subheading">Everything made to order. Nothing from a machine.</p>
+    <div class="menu-grid">
+
+      <!-- Column 1 -->
+      <div class="menu-col">
+        <p class="menu-col-title">Espresso Bar</p>
+        <div class="menu-item"><span class="menu-item-name">Espresso</span><span class="menu-item-price">€2.00</span></div>
+        <div class="menu-item"><span class="menu-item-name">Cortado</span><span class="menu-item-price">€2.50</span></div>
+        <div class="menu-item"><span class="menu-item-name">Flat White</span><span class="menu-item-price">€3.50</span></div>
+        <div class="menu-item"><span class="menu-item-name">Oat Cappuccino</span><span class="menu-item-price">€3.80</span></div>
+        <div class="menu-item"><span class="menu-item-name">Cold Brew</span><span class="menu-item-price">€4.00</span></div>
+        <div class="menu-item"><span class="menu-item-name">Iced Latte</span><span class="menu-item-price">€4.50</span></div>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="menu-col">
+        <p class="menu-col-title">Filter & Specials</p>
+        <div class="menu-item"><span class="menu-item-name">Pour Over</span><span class="menu-item-price">€4.50</span></div>
+        <div class="menu-item"><span class="menu-item-name">Batch Brew</span><span class="menu-item-price">€3.00</span></div>
+        <div class="menu-item"><span class="menu-item-name">Espresso Tonic</span><span class="menu-item-price">€4.80</span></div>
+        <div class="menu-item"><span class="menu-item-name">Matcha Latte</span><span class="menu-item-price">€4.00</span></div>
+        <div class="menu-item"><span class="menu-item-name">House Chai</span><span class="menu-item-price">€4.00</span></div>
+        <div class="menu-item"><span class="menu-item-name">Turmeric Latte</span><span class="menu-item-price">€4.00</span></div>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="menu-col">
+        <p class="menu-col-title">Bites</p>
+        <div class="menu-item"><span class="menu-item-name">Cardamom Bun</span><span class="menu-item-price">€3.50</span></div>
+        <div class="menu-item"><span class="menu-item-name">Butter Croissant</span><span class="menu-item-price">€3.00</span></div>
+        <div class="menu-item"><span class="menu-item-name">Banana Bread</span><span class="menu-item-price">€3.50</span></div>
+        <div class="menu-item"><span class="menu-item-name">Avocado Toast</span><span class="menu-item-price">€7.00</span></div>
+        <div class="menu-item"><span class="menu-item-name">Yogurt Bowl</span><span class="menu-item-price">€5.50</span></div>
+        <div class="menu-item"><span class="menu-item-name">Brownie</span><span class="menu-item-price">€3.00</span></div>
+      </div>
+
+    </div>
+    <p class="menu-small">Oat, soy &amp; almond milk available on all drinks. Menu updated seasonally.</p>
+  </section>
+
+  
+
+ <!-- PHOTO CAROUSEL -->
+  <section class="carousel-section">
+    <div class="carousel-heading">
+      <p class="carousel-title">COME AS YOU ARE.</p>
+      <p class="carousel-body">Wood tables, natural light, the smell of fresh roast. Laptops welcome before noon. Dogs always welcome.</p>
+    </div>
+    <div class="carousel">
+      <div class="carousel-card">
+        <img src="images/coffeeshop-5.jpg" alt="Morning Light" />
+        <span class="carousel-label">Morning Light</span>
+      </div>
+      <div class="carousel-card">
+        <img src="images/coffeeshop-6.jpg" alt="The Counter" />
+        <span class="carousel-label">The Counter</span>
+      </div>
+      <div class="carousel-card">
+        <img src="images/coffeeshop-7.jpg" alt="Our Beans" />
+        <span class="carousel-label">Our Beans</span>
+      </div>
+      <div class="carousel-card">
+        <img src="images/coffeeshop-9.jpg" alt="The Patio" />
+        <span class="carousel-label">The Patio</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- HOW WE DO IT -->
+  <section class="how-section">
+    <h2 class="how-heading">How We Do It</h2>
+    <div class="how-grid">
+
+      <div class="how-pillar">
+        <span class="how-number">01</span>
+        <span class="how-title">Direct Sourcing</span>
+        <p class="how-body">We buy direct from farms we've visited. Every bean has a name, a place, and a farmer behind it.</p>
+      </div>
+
+      <div class="how-pillar">
+        <span class="how-number">02</span>
+        <span class="how-title">Roasted in Barcelona</span>
+        <p class="how-body">Our roasting partner SlowMov handles every batch a few streets away. Fresh, traceable, and seasonal.</p>
+      </div>
+
+      <div class="how-pillar">
+        <span class="how-number">03</span>
+        <span class="how-title">Served with Care</span>
+        <p class="how-body">No automatics. Every drink is pulled by hand. We take the time because you deserve a coffee worth sitting down for.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FIND US -->
+  <section class="find-us-section">
+    <div class="find-us-grid">
+
+      <!-- Left -->
+      <div class="find-us-left">
+        <h2 class="find-us-heading">COME FIND US.</h2>
+        <p class="find-us-address">
+          Cafetera Bonita<br>
+          Carrer del Torrent de l'Olla, 42<br>
+          08012 Gràcia, Barcelona<br>
+          —<br>
+          Mon–Fri: 8:00 – 18:00<br>
+          Sat–Sun: 9:00 – 19:00<br>
+          —<br>
+          hola@cafeterabonita.com<br>
+          +34 600 000 000<br>
+          @cafeterabonita
+        </p>
+        <span class="find-us-metro">Metro L3 — Fontana or Diagonal</span>
+        <a class="find-us-whatsapp" href="https://wa.me/34600000000?text=Hola%20Cafetera%20Bonita%2C%20I%20have%20a%20question...">💬 WhatsApp us</a>
+      </div>
+
+      <!-- Right — Contact Form -->
+      <div class="find-us-form">
+        <p class="find-us-form-heading">SAY HELLO</p>
+        <form>
+          <input class="form-field" type="text" placeholder="Name" />
+          <input class="form-field" type="email" placeholder="Email" />
+          <textarea class="form-field form-field--textarea" rows="4" placeholder="Message"></textarea>
+          <button class="form-submit" type="submit">Send a note →</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <!-- Left -->
+    <div class="footer-left">
+      <p class="footer-brand">CAFETERA BONITA</p>
+      <p class="footer-tagline">Slow mornings. Good beans. Gràcia.</p>
+    </div>
+
+    <!-- Right -->
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="https://instagram.com/cafeterabonita" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://wa.me/34600000000?text=Hola%20Cafetera%20Bonita%2C%20I%20have%20a%20question..." aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+      <p class="footer-copy">© 2025 Cafetera Bonita</p>
+    </div>
+
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a class="wa-float" href="https://wa.me/34600000000?text=Hola%20Cafetera%20Bonita%2C%20I%20have%20a%20question..." aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
   <!-- BACK LINK -->
   <a class="back-link" href="index.html">← Mano Studio</a>
@@ -401,6 +1356,30 @@
 
     overlayClose.addEventListener('click', () => {
       overlay.classList.remove('open');
+    });
+
+    // Drag-to-scroll carousel
+    const carousel = document.querySelector('.carousel');
+    let isDown = false, startX, scrollLeft;
+    carousel.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft; });
+    carousel.addEventListener('mouseleave', () => isDown = false);
+    carousel.addEventListener('mouseup', () => isDown = false);
+    carousel.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX) * 1.5;
+    });
+
+    // Parallax photo columns
+    const leftCol = document.querySelector('.cta-col-left');
+    const rightCol = document.querySelector('.cta-col-right');
+    const ctaSection = document.querySelector('.cta-section');
+
+    window.addEventListener('scroll', () => {
+      const rect = ctaSection.getBoundingClientRect();
+      const progress = -rect.top / window.innerHeight;
+      leftCol.style.transform = `translateY(${progress * -60}px)`;
+      rightCol.style.transform = `translateY(${progress * 60}px)`;
     });
   </script>
 

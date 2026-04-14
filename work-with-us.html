@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work With Us — Cafetera Bonita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === VARIABLES === */
+    :root {
+      --vanilla: #FFEEBC;
+      --blue: #D2E8FF;
+      --green: #26422A;
+      --bistre: #5D372A;
+      --flame: #EA672D;
+      --text-dark: #1A1008;
+      --text-muted: #5A4A3A;
+    }
+
+    /* === RESET === */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--vanilla);
+      color: var(--text-dark);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* === NAV === */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 60px;
+      background: transparent;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: var(--green);
+      box-shadow: 0 1px 12px rgba(26, 16, 8, 0.08);
+    }
+
+    nav.scrolled .nav-logo {
+      color: var(--flame);
+    }
+
+    /* logo */
+    .nav-logo {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    /* desktop links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 55px;
+      width: 48%;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: var(--vanilla);
+      color: var(--green);
+    }
+
+    /* hamburger */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 20px;
+      height: 14px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .burger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--green);
+    }
+
+    /* mobile overlay */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--vanilla);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .nav-overlay.open {
+      display: flex;
+    }
+
+    .nav-overlay a {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 32px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #D2E8FF;
+      text-decoration: none;
+    }
+
+    .overlay-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: var(--green);
+      cursor: pointer;
+      line-height: 1;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* === BACK LINK === */
+    .back-link {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 300;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--vanilla);
+      padding: 10px 16px;
+      text-decoration: none;
+    }
+
+    /* === WORK WITH US === */
+    .work-section {
+      background: var(--vanilla);
+      padding: 100px 80px;
+      padding-top: 160px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .work-heading {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 52px;
+      color: var(--green);
+      letter-spacing: 0.03em;
+    }
+
+    .work-body {
+      margin-top: 24px;
+      max-width: 380px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    .work-openings {
+      display: block;
+      margin-top: 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--flame);
+    }
+
+    .work-form {
+      background: var(--green);
+      padding: 48px;
+    }
+
+    .work-form-heading {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 28px;
+      color: var(--vanilla);
+      margin-bottom: 32px;
+    }
+
+    .form-field {
+      display: block;
+      width: 100%;
+      border: none;
+      background: transparent;
+      padding: 12px 0;
+      margin-bottom: 24px;
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+    }
+
+    .form-field--inverted {
+      border-bottom: 1px solid rgba(255, 238, 188, 0.25);
+      color: var(--vanilla);
+    }
+
+    .form-field--inverted::placeholder {
+      color: rgba(255, 238, 188, 0.45);
+    }
+
+    .form-field--textarea {
+      resize: none;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--flame);
+      color: var(--vanilla);
+      padding: 16px;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.3s;
+    }
+
+    .form-submit:hover {
+      background: var(--bistre);
+    }
+
+    /* === FOOTER === */
+    .site-footer {
+      background: var(--bistre);
+      padding: 40px 80px;
+      border-top: 1px solid rgba(255, 238, 188, 0.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--vanilla);
+    }
+
+    .footer-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: var(--vanilla);
+      opacity: 0.45;
+      margin-top: 8px;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .footer-social a {
+      opacity: 0.6;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--vanilla);
+    }
+
+    .footer-copy {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: var(--vanilla);
+      opacity: 0.45;
+    }
+
+    /* === WHATSAPP FLOAT === */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--flame);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(234, 103, 45, 0.4);
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+    }
+
+    .wa-float svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--vanilla);
+    }
+
+    /* === MOBILE === */
+    @media (max-width: 767px) {
+      nav {
+        padding: 20px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .work-section {
+        padding: 120px 24px 60px;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .site-footer {
+        padding: 40px 24px;
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-right {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="cafetera-bonita.html">Cafetera Bonita</a>
+    <ul class="nav-links">
+      <li><a href="cafetera-bonita.html#">Menu</a></li>
+      <li><a href="cafetera-bonita.html#">Our Story</a></li>
+      <li><a href="cafetera-bonita.html#">The Beans</a></li>
+      <li><a href="cafetera-bonita.html#">Find Us</a></li>
+      <li><a href="work-with-us.html">Work With Us</a></li>
+    </ul>
+    <button class="burger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="nav-overlay">
+    <button class="overlay-close" aria-label="Close menu">&#x2715;</button>
+    <a href="cafetera-bonita.html#">Menu</a>
+    <a href="cafetera-bonita.html#">Our Story</a>
+    <a href="cafetera-bonita.html#">The Beans</a>
+    <a href="cafetera-bonita.html#">Find Us</a>
+    <a href="work-with-us.html">Work With Us</a>
+  </div>
+
+  <!-- WORK WITH US -->
+  <section class="work-section">
+    <div class="work-grid">
+
+      <!-- Left -->
+      <div class="work-left">
+        <h2 class="work-heading">WORK WITH US.</h2>
+        <p class="work-body">We're always looking for passionate people who love coffee and people in equal measure. If that's you, we'd love to hear from you.</p>
+        <span class="work-openings">Current openings: Barista · Front of House</span>
+      </div>
+
+      <!-- Right — Jobs Form -->
+      <div class="work-form">
+        <p class="work-form-heading">JOIN THE TEAM</p>
+        <form>
+          <input class="form-field form-field--inverted" type="text" placeholder="Name" />
+          <input class="form-field form-field--inverted" type="email" placeholder="Email" />
+          <input class="form-field form-field--inverted" type="text" placeholder="Barista, Front of House, Other..." />
+          <textarea class="form-field form-field--textarea form-field--inverted" rows="4" placeholder="Tell us a bit about yourself..."></textarea>
+          <button class="form-submit" type="submit">Send your CV →</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <!-- Left -->
+    <div class="footer-left">
+      <p class="footer-brand">CAFETERA BONITA</p>
+      <p class="footer-tagline">Slow mornings. Good beans. Gràcia.</p>
+    </div>
+
+    <!-- Right -->
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="https://instagram.com/cafeterabonita" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://wa.me/34600000000?text=Hola%20Cafetera%20Bonita%2C%20I%20have%20a%20question..." aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+      <p class="footer-copy">© 2025 Cafetera Bonita</p>
+    </div>
+
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a class="wa-float" href="https://wa.me/34600000000?text=Hola%20Cafetera%20Bonita%2C%20I%20have%20a%20question..." aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- BACK LINK -->
+  <a class="back-link" href="cafetera-bonita.html">← Back</a>
+
+  <script>
+    // Nav scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu toggle
+    const burger = document.querySelector('.burger');
+    const overlay = document.querySelector('.nav-overlay');
+    const overlayClose = document.querySelector('.overlay-close');
+
+    burger.addEventListener('click', () => {
+      overlay.classList.toggle('open');
+    });
+
+    overlayClose.addEventListener('click', () => {
+      overlay.classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cafetera Bonita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === VARIABLES === */
+    :root {
+      --vanilla: #FFEEBC;
+      --blue: #D2E8FF;
+      --green: #26422A;
+      --bistre: #5D372A;
+      --flame: #EA672D;
+      --text-dark: #1A1008;
+      --text-muted: #5A4A3A;
+    }
+
+    /* === RESET === */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--vanilla);
+      color: var(--text-dark);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* === NAV === */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 60px;
+      background: transparent;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: var(--vanilla);
+      box-shadow: 0 1px 12px rgba(26, 16, 8, 0.08);
+    }
+
+    /* logo */
+    .nav-logo {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    /* desktop links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 55px;
+      width: 48%;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: var(--vanilla);
+      color: var(--green);
+    }
+
+    /* hamburger */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 20px;
+      height: 14px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .burger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--green);
+    }
+
+    /* mobile overlay */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--vanilla);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .nav-overlay.open {
+      display: flex;
+    }
+
+    .nav-overlay a {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 32px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #D2E8FF;
+      text-decoration: none;
+    }
+
+    .overlay-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: var(--green);
+      cursor: pointer;
+      line-height: 1;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* === HERO === */
+    .hero {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* left panel */
+    .hero-left {
+      width: 52%;
+      background: var(--vanilla);
+      padding: 120px 60px 80px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      font-size: 96px;
+      line-height: 0.9;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    .hero-headline div {
+      display: block;
+    }
+
+    .hero-body {
+      margin-top: 36px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 300px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 44px;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--text-dark);
+      border: none;
+      padding: 14px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--green);
+      border: 2px solid var(--green);
+      padding: 14px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* illustration at seam */
+    .hero-illustration {
+      position: absolute;
+      bottom: 0;
+      right: -80px;
+      width: 200px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      display: block;
+    }
+
+    /* right panel */
+    .hero-right {
+      width: 48%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img.hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-right-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 16, 8, 0.1);
+    }
+
+    /* === BACK LINK === */
+    .back-link {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 300;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--vanilla);
+      padding: 10px 16px;
+      text-decoration: none;
+    }
+
+    /* === MOBILE === */
+    @media (max-width: 767px) {
+      nav {
+        padding: 20px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .hero {
+        flex-direction: column;
+      }
+
+      .hero-right {
+        width: 100%;
+        height: 55vh;
+        order: -1;
+      }
+
+      .hero-left {
+        width: 100%;
+        padding: 48px 24px;
+      }
+
+      .hero-headline {
+        font-size: 64px;
+      }
+
+      .hero-illustration {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Cafetera Bonita</a>
+    <ul class="nav-links">
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Our Story</a></li>
+      <li><a href="#">The Beans</a></li>
+      <li><a href="#">Find Us</a></li>
+    </ul>
+    <button class="burger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="nav-overlay">
+    <button class="overlay-close" aria-label="Close menu">&#x2715;</button>
+    <a href="#">Menu</a>
+    <a href="#">Our Story</a>
+    <a href="#">The Beans</a>
+    <a href="#">Find Us</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- left panel -->
+    <div class="hero-left">
+      <p class="hero-label">Est. 2019 · Gràcia, Barcelona</p>
+      <div class="hero-headline">
+        <div>SLOW</div>
+        <div>MORNINGS.</div>
+        <div>GOOD</div>
+        <div>BEANS.</div>
+      </div>
+      <p class="hero-body">Specialty coffee, made by hand. Find us on Torrent de l'Olla, in the heart of Gràcia.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary">See the Menu</a>
+        <a href="#" class="btn-secondary">Our Story →</a>
+      </div>
+      <img class="hero-illustration" src="images/coffeeshop-1.jpg" alt="" />
+    </div>
+
+    <!-- right panel -->
+    <div class="hero-right">
+      <img class="hero-photo" src="images/coffeeshop-13.jpg" alt="Cafetera Bonita interior" />
+      <div class="hero-right-overlay"></div>
+    </div>
+
+  </section>
+
+  <!-- BACK LINK -->
+  <a class="back-link" href="index.html">← Mano Studio</a>
+
+  <script>
+    // Nav scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu toggle
+    const burger = document.querySelector('.burger');
+    const overlay = document.querySelector('.nav-overlay');
+    const overlayClose = document.querySelector('.overlay-close');
+
+    burger.addEventListener('click', () => {
+      overlay.classList.toggle('open');
+    });
+
+    overlayClose.addEventListener('click', () => {
+      overlay.classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>

@@ -175,6 +175,7 @@
       object-fit: cover;
       object-position: center;
     }
+    .hero-bg-mobile { display: none; }
 
     .hero-overlay {
       position: absolute;
@@ -850,6 +851,8 @@
       .hero { height: 92vh; }
       .hero-line-text { font-size: 16px; padding: 14px 0; }
       .hero-rule { width: 120px; }
+      .hero-bg-desktop { display: none; }
+      .hero-bg-mobile { display: block; }
 
       /* Banner */
       .banner-track { animation-duration: 36s; }
@@ -914,7 +917,8 @@
 
   <!-- ─── Hero ─── -->
   <section class="hero" id="hero">
-    <img class="hero-bg" src="images/FLO_RAMA_HOME_PAGE.jpg" alt="Flor Roama" />
+    <img class="hero-bg hero-bg-desktop" src="images/FLO_RAMA_HOME_PAGE.jpg" alt="Flor Roama" />
+    <img class="hero-bg hero-bg-mobile" src="images/flowershop-25.jpg" alt="Flor Roama" />
     <div class="hero-overlay">
       <p class="hero-location">— from our studio in el born —</p>
       <button class="hero-btn" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">choose a bouquet</button>

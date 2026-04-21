@@ -754,7 +754,7 @@
 
     .pricing__cards {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2px;
       margin-bottom: 2px;
     }
@@ -767,6 +767,11 @@
     .pricing__card--dark {
       background: var(--dark);
       color: var(--cream);
+    }
+
+    .pricing__card--light {
+      background: transparent;
+      border: 1px solid rgba(26,24,20,0.15);
     }
 
     .pricing__card-label {
@@ -1157,6 +1162,19 @@
         gap: 12px;
       }
 
+      /* Why it matters */
+      #why-it-matters {
+        padding: 72px 24px;
+      }
+
+      .why__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why__card--full {
+        grid-column: 1;
+      }
+
       /* FAQ */
       #faq {
         padding: 72px 24px;
@@ -1182,6 +1200,58 @@
       .contact__btns .btn {
         text-align: center;
       }
+    }
+
+    /* ── WHY IT MATTERS SECTION ── */
+    #why-it-matters {
+      padding: 100px 40px;
+      background: var(--bg);
+    }
+
+    .why__heading {
+      font-size: clamp(28px, 4vw, 50px);
+      text-align: center;
+      margin-bottom: 60px;
+      color: var(--text);
+    }
+
+    .why__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .why__card {
+      background: var(--cream);
+      border: 1px solid rgba(26,24,20,0.12);
+      padding: 36px;
+    }
+
+    .why__card--full {
+      grid-column: 1 / -1;
+    }
+
+    .why__card-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 26px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .why__card-body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text);
+      opacity: 0.7;
+    }
+
+    .why__cta {
+      text-align: center;
     }
 
     /* ─── Scroll offset for sticky nav ─────────────────────── */
@@ -1385,6 +1455,46 @@
       </div>
     </section>
 
+    <!-- ─── WHY IT MATTERS ─────────────────────────────────────── -->
+    <section id="why-it-matters" aria-labelledby="why-heading">
+      <div class="container">
+        <h2 class="why__heading" id="why-heading">Why a professional website matters in 2026</h2>
+
+        <div class="why__grid">
+
+          <div class="why__card">
+            <h3 class="why__card-header">If you aren't on the map, you don't exist</h3>
+            <p class="why__card-body">When someone in Barcelona searches for a hair salon or bakery on their phone, Google prioritizes businesses with a real website. Without one, you're invisible to the thousands of people walking past your door using Maps to decide where to go.</p>
+          </div>
+
+          <div class="why__card">
+            <h3 class="why__card-header">The new word-of-mouth is digital</h3>
+            <p class="why__card-body">Modern phones and AI tools are the new word of mouth. When a tourist asks their phone to find a quiet studio nearby, the AI looks for a website to verify you're the right fit. If you don't have one, the AI can't recommend you.</p>
+          </div>
+
+          <div class="why__card">
+            <h3 class="why__card-header">Stop building your business on rented land</h3>
+            <p class="why__card-body">Social media is like renting a space — the landlord can change the rules or hide your posts at any time. A website is property you own. Your permanent digital storefront, on your terms.</p>
+          </div>
+
+          <div class="why__card">
+            <h3 class="why__card-header">Your time is your most expensive investment</h3>
+            <p class="why__card-body">A DIY template costs €70. But if it takes 40 hours to learn the software and fix the mobile layout, what did that site actually cost your business? We give those 40 hours back to you.</p>
+          </div>
+
+          <div class="why__card why__card--full">
+            <h3 class="why__card-header">Professional results, zero tech headaches</h3>
+            <p class="why__card-body">You can build a site yourself — but it will cost you weeks of after-hours frustration. As an owner, your hour is worth more than that. Let us handle the tech so you can focus on your customers. We don't just give you a site. We give you your weekends back.</p>
+          </div>
+
+        </div>
+
+        <div class="why__cta">
+          <a href="#contact" class="btn">Claim your weekends back</a>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── PRICING ───────────────────────────────────────────── -->
     <section id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
@@ -1411,27 +1521,34 @@
 
           <div class="pricing__card pricing__card--dark">
             <span class="pricing__card-label">Care Plan</span>
-            <div class="pricing__price">100 <span style="font-size:28px;opacity:0.5">EUR</span></div>
+            <div class="pricing__price">20 <span style="font-size:28px;opacity:0.5">EUR</span></div>
             <span class="pricing__freq">per month · cancel anytime</span>
             <ul class="pricing__list">
               <li>Hosting &amp; domain management</li>
               <li>Security updates &amp; backups</li>
-              <li>Up to 2 content changes/month</li>
-              <li>Priority email support</li>
+              <li>Up to 2 small changes/month (text, menu, hours)</li>
               <li>Performance monitoring</li>
               <li>Annual design refresh</li>
             </ul>
           </div>
 
+          <div class="pricing__card pricing__card--light">
+            <span class="pricing__card-label">Self-Managed</span>
+            <div class="pricing__price">€0 <span style="font-size:28px;opacity:0.5">/ month</span></div>
+            <span class="pricing__freq">after handover</span>
+            <ul class="pricing__list">
+              <li>Full file and code handover</li>
+              <li>All login credentials documented</li>
+              <li>We answer one handover call</li>
+              <li>Domain renewal ~€10–15/year (your cost)</li>
+              <li>You manage all future changes</li>
+            </ul>
+            <p style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:var(--text);opacity:0.45;margin-top:28px;line-height:1.75;">The exit door is always open — this option exists because we believe in no lock-in.</p>
+          </div>
+
         </div>
 
-        <div class="pricing__addon">
-          <div class="pricing__addon-text">
-            <strong>Newsletter Add-on</strong>
-            Monthly email to your list — written, designed, and sent for you.
-          </div>
-          <div class="pricing__addon-price">+ 30 EUR<span style="font-size:16px;opacity:0.6">/mo</span></div>
-        </div>
+        <p style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:var(--text);opacity:0.45;margin-top:20px;line-height:1.75;">Need more revisions? Additional rounds are €50 each — agreed in advance, no surprises.</p>
 
       </div>
     </section>
@@ -1489,7 +1606,7 @@
               Do you speak Spanish or Catalan?
               <span class="faq__icon" aria-hidden="true"></span>
             </button>
-            <div class="faq__a">Yes — we work comfortably in English, Spanish, and Catalan. You can choose whichever feels most natural to you. Our contracts and communications can be in any of the three.</div>
+            <div class="faq__a">We work in English. Our websites can be built in English, Spanish, and Catalan — we work with native translators to make sure the copy feels right for your audience. All client communication is in English.</div>
           </div>
 
           <div class="faq__item">
@@ -1498,14 +1615,6 @@
               <span class="faq__icon" aria-hidden="true"></span>
             </button>
             <div class="faq__a">We'll give you everything — all your files, login credentials, documentation, and a handover call if needed. We build on standard technologies so any competent developer can pick up where we left off. No lock-in, ever.</div>
-          </div>
-
-          <div class="faq__item">
-            <button class="faq__q" aria-expanded="false">
-              How do I request changes?
-              <span class="faq__icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq__a">A simple WhatsApp message or email is all it takes. No ticket systems, no forms, no waiting for a project manager. You talk to us directly. We aim to acknowledge all requests within one business day.</div>
           </div>
 
         </div>
@@ -1523,7 +1632,7 @@
         <div class="contact__btns">
           <a href="https://wa.me/34600000000" class="btn btn--cream">WhatsApp</a>
           <a href="https://cal.com" class="btn btn--outline-cream">Book a call</a>
-          <a href="mailto:hello@manostudio.co" class="btn btn--outline-cream">Email us</a>
+          <a href="mailto:manostudio.hello@gmail.com" class="btn btn--outline-cream">Email us</a>
         </div>
       </div>
     </section>
@@ -1532,7 +1641,7 @@
 
   <!-- ─── FOOTER ───────────────────────────────────────────── -->
   <footer id="footer" role="contentinfo">
-    <p class="footer__text">Mano Studio &nbsp;·&nbsp; Barcelona &nbsp;·&nbsp; hello@manostudio.co &nbsp;·&nbsp; 2026</p>
+    <p class="footer__text">Mano Studio &nbsp;·&nbsp; Barcelona &nbsp;·&nbsp; manostudio.hello@gmail.com &nbsp;·&nbsp; 2026</p>
   </footer>
 
   <!-- ─── JS ───────────────────────────────────────────────── -->

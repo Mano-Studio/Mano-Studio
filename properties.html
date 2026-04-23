@@ -69,7 +69,7 @@
       font-size: 14px;
       letter-spacing: 0.12em;
       text-decoration: none;
-      color: var(--white);
+      color: #1A1814;
       text-transform: uppercase;
       transition: opacity 0.25s ease;
     }
@@ -229,6 +229,61 @@
       font-weight: 300;
       font-size: clamp(36px, 5vw, 56px);
       color: var(--near-black);
+    }
+
+    .page-header .hero-logo-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 40px;
+    }
+
+    .page-header .hero-logo-the {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--near-black);
+      line-height: 1.4;
+    }
+
+    .page-header .hero-logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 48px;
+      letter-spacing: 0.35em;
+      color: var(--near-black);
+      line-height: 1.15;
+    }
+
+    .page-header .hero-logo-rule {
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: var(--near-black);
+      opacity: 0.4;
+      margin: 6px 0 5px;
+    }
+
+    .page-header .hero-logo-sub {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--near-black);
+    }
+
+    .listings-section-label {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 24px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(26, 24, 20, 0.5);
+      text-align: center;
+      margin-bottom: 40px;
     }
 
     /* ─── listings layout ─── */
@@ -716,8 +771,13 @@
 
   <!-- page header -->
   <header class="page-header">
-    <span class="page-breadcrumb">Home · Properties · Current Listings</span>
-    <h1 class="page-heading">Current Listings</h1>
+    <div class="hero-logo-block">
+      <span class="hero-logo-the">the</span>
+      <span class="hero-logo-name">PAULO</span>
+      <span class="hero-logo-rule"></span>
+      <span class="hero-logo-sub">Properties</span>
+    </div>
+    <span class="listings-section-label">Current Listings</span>
   </header>
 
   <!-- listings -->
@@ -764,10 +824,10 @@
         <!-- card 1 -->
         <div class="property-card">
           <div class="card-photo">
-            <span class="card-photo-label">Property</span>
-            <span class="card-photo-arrow card-photo-arrow-left">←</span>
-            <span class="card-photo-arrow card-photo-arrow-right">→</span>
-          </div>
+        <img src="images/realestate_apartment1.jpg" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;">
+        <span class="card-photo-arrow card-photo-arrow-left">←</span>
+        <span class="card-photo-arrow card-photo-arrow-right">→</span>
+        </div>
           <div class="card-content">
             <div>
               <div class="card-name">Casa Eixample</div>
@@ -800,10 +860,10 @@
         <!-- card 2 -->
         <div class="property-card">
           <div class="card-photo">
-            <span class="card-photo-label">Property</span>
-            <span class="card-photo-arrow card-photo-arrow-left">←</span>
-            <span class="card-photo-arrow card-photo-arrow-right">→</span>
-          </div>
+        <img src="images/realestate_apartment2.jpg" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;">
+        <span class="card-photo-arrow card-photo-arrow-left">←</span>
+        <span class="card-photo-arrow card-photo-arrow-right">→</span>
+        </div>
           <div class="card-content">
             <div>
               <div class="card-name">Gràcia Garden Flat</div>
@@ -836,10 +896,10 @@
         <!-- card 3 -->
         <div class="property-card">
           <div class="card-photo">
-            <span class="card-photo-label">Property</span>
-            <span class="card-photo-arrow card-photo-arrow-left">←</span>
-            <span class="card-photo-arrow card-photo-arrow-right">→</span>
-          </div>
+        <img src="images/realestate_townhouse1.jpg" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;">
+        <span class="card-photo-arrow card-photo-arrow-left">←</span>
+        <span class="card-photo-arrow card-photo-arrow-right">→</span>
+        </div>
           <div class="card-content">
             <div>
               <div class="card-name">Sant Pere Townhouse</div>
@@ -872,10 +932,10 @@
         <!-- card 4 -->
         <div class="property-card">
           <div class="card-photo">
-            <span class="card-photo-label">Property</span>
-            <span class="card-photo-arrow card-photo-arrow-left">←</span>
-            <span class="card-photo-arrow card-photo-arrow-right">→</span>
-          </div>
+        <img src="images/realestate_house.jpg" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;">
+        <span class="card-photo-arrow card-photo-arrow-left">←</span>
+        <span class="card-photo-arrow card-photo-arrow-right">→</span>
+        </div>
           <div class="card-content">
             <div>
               <div class="card-name">Sarrià House</div>
@@ -908,10 +968,10 @@
         <!-- card 5 -->
         <div class="property-card">
           <div class="card-photo">
-            <span class="card-photo-label">Property</span>
-            <span class="card-photo-arrow card-photo-arrow-left">←</span>
-            <span class="card-photo-arrow card-photo-arrow-right">→</span>
-          </div>
+        <img src="images/realestate_apartment3.jpg" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;">
+        <span class="card-photo-arrow card-photo-arrow-left">←</span>
+        <span class="card-photo-arrow card-photo-arrow-right">→</span>
+        </div>
           <div class="card-content">
             <div>
               <div class="card-name">Barceloneta Studio</div>

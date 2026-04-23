@@ -183,6 +183,12 @@
       background: var(--near-black);
     }
 
+    /* ─── nav featured link ─── */
+    .nav-featured {
+      border-bottom: 1px solid rgba(35, 62, 101, 0.4);
+      padding-bottom: 2px;
+    }
+
     /* ─── hero ─── */
     .hero {
       position: relative;
@@ -614,6 +620,297 @@
         width: 100%;
       }
     }
+
+    /* ─── properties banner ─── */
+    .properties-banner {
+      background: var(--white);
+      overflow: hidden;
+      padding: 80px 0;
+    }
+
+    .properties-banner-label {
+      display: block;
+      text-align: center;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #1A1814;
+      margin-bottom: 40px;
+    }
+
+    .properties-banner-heading {
+      display: block;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(32px, 4vw, 48px);
+      color: #1A1814;
+      margin-bottom: 48px;
+    }
+
+    @keyframes scrollLeft {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .properties-scroll-track {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      animation: scrollLeft 28s linear infinite;
+    }
+
+    .property-placeholder {
+      height: 260px;
+      aspect-ratio: 3 / 2;
+      background: #233E65;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .property-placeholder-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: #1A1814;
+    }
+
+    .properties-banner-cta-wrap {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .properties-banner-cta {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #1A1814;
+      background: transparent;
+      color: #1A1814;
+      padding: 14px 40px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .properties-banner-cta:hover {
+      background: #DDD1BC;;
+      color: #1A1814;
+    }
+
+    /* ─── testimonials ─── */
+    .testimonials {
+      background: #F0EFEA;
+      padding: 60px 60px;
+    }
+
+    .testimonials-label {
+      display: block;
+      text-align: center;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #233E65;
+      margin-bottom: 16px;
+    }
+
+    .testimonials-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 5vw, 56px);
+      color: #1A1814;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .testimonials-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      width: 100%;
+      background: #DDD1BC;
+      padding: 16px 56px;
+    }
+
+    .testimonial-quote-mark {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 40px;
+      line-height: 1;
+      color: #233E65;
+      opacity: 0.3;
+      margin-bottom: 8px;
+    }
+
+    .testimonial-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1A1814;
+      font-style: italic;
+    }
+
+    .testimonial-rule {
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: rgba(26, 24, 20, 0.12);
+      border: none;
+      margin-top: 16px;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-name {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #1A1814;
+      margin-bottom: 4px;
+    }
+
+    .testimonial-detail {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: rgba(26, 24, 20, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .testimonials {
+        padding: 60px 24px;
+      }
+
+    }
+
+    /* ─── contact & footer ─── */
+    .contact-footer {
+      background: #233E65;
+      padding: 100px 60px;
+    }
+
+    .contact-footer-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-label {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 16px;
+    }
+
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 5vw, 56px);
+      color: #FFFFFF;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .contact-subtext {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 48px;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background: transparent;
+      border: 1px solid #FFFFFF;
+      padding: 14px 40px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background: #FFFFFF;
+      color: #233E65;
+    }
+
+    .footer-strip {
+      margin-top: 80px;
+    }
+
+    .footer-rule {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      margin-bottom: 40px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy,
+    .footer-location {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .footer-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .contact-footer {
+        padding: 60px 24px;
+      }
+
+      .footer-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -628,6 +925,7 @@
 
     <ul class="nav-right">
       <li><a href="#">Contact</a></li>
+      <li><a href="properties.html" class="nav-featured">Explore Our Properties</a></li>
     </ul>
 
     <button class="nav-hamburger" aria-label="Open menu">
@@ -764,6 +1062,82 @@
         <span class="service-title">Relocation & Onboarding</span>
         <span class="service-desc">For those arriving in Barcelona. We handle the search, the paperwork, and the first-year details so nothing falls through the cracks.</span>
         <a href="#" class="service-link">Learn more →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- testimonials -->
+  <section class="testimonials">
+    <span class="testimonials-label">Client Words</span>
+    <h2 class="testimonials-heading">What our clients say</h2>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <span class="testimonial-quote-mark">"</span>
+        <div class="testimonial-body">
+          <p class="testimonial-text">Paulo and his team found us a flat in Eixample that never appeared on any listing site. The entire process took six weeks from first call to signing. Exactly what we needed.</p>
+          <hr class="testimonial-rule">
+          <span class="testimonial-name">James &amp; Caroline T.</span>
+          <span class="testimonial-detail">Residential Purchase · Eixample</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <span class="testimonial-quote-mark">"</span>
+        <div class="testimonial-body">
+          <p class="testimonial-text">As an international investor I needed someone who understood both the market and my timeline. Carles gave me clear, honest advice and I now have two properties generating strong returns.</p>
+          <hr class="testimonial-rule">
+          <span class="testimonial-name">Mikael R.</span>
+          <span class="testimonial-detail">Investment Portfolio · Gràcia &amp; Poblenou</span>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- properties banner -->
+  <section class="properties-banner">
+    <span class="properties-banner-label">Explore Our Properties</span>
+    <span class="properties-banner-heading">Current listings across Barcelona</span>
+
+    <div class="properties-scroll-track">
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_apartment1.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_townhouse1.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_apartment2.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_house.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_apartment3.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_apartment1.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_apartment1.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_townhouse1.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_apartment2.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_house.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_apartment3.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div style="width:390px; height:260px; flex-shrink:0; overflow:hidden;"><img src="images/realestate_apartment1.jpg" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+    </div>
+
+    <div class="properties-banner-cta-wrap">
+      <a href="properties.html" class="properties-banner-cta">View All Properties</a>
+    </div>
+  </section>
+
+  <!-- contact & footer -->
+  <section class="contact-footer">
+    <div class="contact-footer-inner">
+
+      <span class="contact-label">Get in Touch</span>
+      <h2 class="contact-heading">Ready to find your<br>next property?</h2>
+      <p class="contact-subtext">We take on a small number of clients each season to ensure every search receives our full attention. Reach out to begin the conversation.</p>
+      <a href="#" class="contact-btn">Book a Consultation</a>
+
+      <div class="footer-strip">
+        <hr class="footer-rule">
+        <div class="footer-row">
+          <span class="footer-copy">© 2026 Paulo Properties</span>
+          <span class="footer-logo-text">the Paulo Properties</span>
+          <span class="footer-location">Barcelona · Est. 2006</span>
+        </div>
       </div>
 
     </div>

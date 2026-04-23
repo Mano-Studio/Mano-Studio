@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Current Listings — Paulo Properties</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── variables ─── */
+    :root {
+      --linen: #DDD1BC;
+      --linen-light: #F0EFEA;
+      --navy: #233E65;
+      --near-black: #1A1814;
+      --white: #FFFFFF;
+      --overlay: rgba(20, 18, 14, 0.45);
+    }
+
+    /* ─── reset ─── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Jost', sans-serif;
+      background: var(--linen-light);
+      color: var(--near-black);
+    }
+
+    /* ─── nav ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 150px;
+      transition: background 0.35s ease, border-bottom 0.35s ease;
+    }
+
+    nav.scrolled {
+      background: var(--linen-light);
+      border-bottom: 1px solid rgba(26, 24, 20, 0.12);
+    }
+
+    /* nav links */
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 150px;
+      list-style: none;
+    }
+
+    .nav-left a,
+    .nav-right a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      color: var(--white);
+      text-transform: uppercase;
+      transition: opacity 0.25s ease;
+    }
+
+    .nav-left a:hover,
+    .nav-right a:not(.nav-cta):hover {
+      opacity: 0.6;
+    }
+
+    nav.scrolled .nav-left a,
+    nav.scrolled .nav-right a:not(.nav-cta) {
+      color: var(--near-black);
+    }
+
+    .nav-cta:hover {
+      background: var(--white) !important;
+      color: var(--near-black) !important;
+      opacity: 1 !important;
+    }
+
+    nav.scrolled .nav-cta {
+      border-color: var(--navy);
+      color: var(--navy) !important;
+    }
+
+    nav.scrolled .nav-cta:hover {
+      background: var(--navy) !important;
+      color: var(--white) !important;
+    }
+
+    /* logo */
+    .logo-the {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--white);
+      line-height: 1.4;
+      transition: color 0.35s ease;
+    }
+
+    nav.scrolled .logo-the {
+      color: var(--near-black);
+    }
+
+    .logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 28px;
+      letter-spacing: 0.35em;
+      color: var(--white);
+      line-height: 1.15;
+      transition: color 0.35s ease;
+    }
+
+    nav.scrolled .logo-name {
+      color: var(--near-black);
+    }
+
+    .logo-rule {
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: var(--white);
+      opacity: 0.4;
+      margin: 6px auto 5px;
+      transition: background 0.35s ease;
+    }
+
+    nav.scrolled .logo-rule {
+      background: var(--near-black);
+    }
+
+    .logo-sub {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: color 0.35s ease;
+    }
+
+    nav.scrolled .logo-sub {
+      color: var(--near-black);
+    }
+
+    /* hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      justify-self: end;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--white);
+      transition: background 0.35s ease;
+    }
+
+    nav.scrolled .nav-hamburger span {
+      background: var(--near-black);
+    }
+
+    /* ─── nav featured link ─── */
+    .nav-featured {
+      border-bottom: 1px solid rgba(35, 62, 101, 0.4);
+      padding-bottom: 2px;
+    }
+
+    /* ─── mobile nav ─── */
+    @media (max-width: 767px) {
+      nav {
+        padding: 18px 24px;
+        grid-template-columns: 1fr auto 1fr;
+      }
+
+      .nav-left {
+        display: none;
+      }
+
+      .nav-right {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+    }
+
+    /* ─── page header ─── */
+    .page-header {
+      padding: 120px 60px 40px;
+      background: var(--linen-light);
+    }
+
+    .page-breadcrumb {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(26, 24, 20, 0.4);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .page-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 5vw, 56px);
+      color: var(--near-black);
+    }
+
+    /* ─── listings layout ─── */
+    .listings-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px 100px;
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    /* ─── filter sidebar ─── */
+    .filter-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      padding-top: 8px;
+    }
+
+    .filter-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(26, 24, 20, 0.5);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .filter-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--navy);
+      background: var(--white);
+      flex-shrink: 0;
+      transition: background 0.2s ease;
+    }
+
+    .filter-option.checked .filter-checkbox {
+      background: var(--navy);
+    }
+
+    .filter-option-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--near-black);
+    }
+
+    /* ─── listings column ─── */
+    .listings-column {
+      flex: 1;
+    }
+
+    /* ─── top bar ─── */
+    .listings-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .listings-count {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(26, 24, 20, 0.6);
+    }
+
+    .listings-sort {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sort-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--near-black);
+    }
+
+    .sort-select {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--near-black);
+      background: transparent;
+      border: 1px solid rgba(26, 24, 20, 0.2);
+      padding: 6px 12px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    /* ─── property cards ─── */
+    .property-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .property-card {
+      display: flex;
+      flex-direction: row;
+      background: var(--white);
+      height: 180px;
+    }
+
+    /* photo area */
+    .card-photo {
+      width: 260px;
+      flex-shrink: 0;
+      height: 100%;
+      background: var(--navy);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-photo-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .card-photo-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .card-photo-arrow-left {
+      left: 14px;
+    }
+
+    .card-photo-arrow-right {
+      right: 14px;
+    }
+
+    /* content area */
+    .card-content {
+      flex: 1;
+      padding: 32px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 22px;
+      color: var(--near-black);
+      margin-bottom: 4px;
+    }
+
+    .card-type {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(35, 62, 101, 0.7);
+    }
+
+    .card-address {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(26, 24, 20, 0.5);
+      margin-top: 6px;
+    }
+
+    .card-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 20px;
+      color: var(--navy);
+    }
+
+    /* stats column */
+    .card-stats {
+      width: 100px;
+      flex-shrink: 0;
+      border-left: 1px solid rgba(26, 24, 20, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      padding: 0 24px;
+    }
+
+    .card-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-stat-number {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--near-black);
+      line-height: 1.3;
+    }
+
+    .card-stat-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(26, 24, 20, 0.4);
+    }
+
+    /* action column */
+    .card-actions {
+      width: 120px;
+      flex-shrink: 0;
+      border-left: 1px solid rgba(26, 24, 20, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px;
+    }
+
+    .card-heart {
+      font-size: 18px;
+      color: rgba(26, 24, 20, 0.3);
+      cursor: pointer;
+    }
+
+    .card-lock {
+      font-size: 14px;
+      color: rgba(26, 24, 20, 0.3);
+    }
+
+    .card-view-more {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-top: 4px;
+      cursor: pointer;
+    }
+
+    /* ─── pagination ─── */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 48px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+    }
+
+    .pagination a {
+      text-decoration: none;
+      color: rgba(26, 24, 20, 0.4);
+    }
+
+    .pagination a:hover {
+      color: var(--near-black);
+    }
+
+    .pagination .page-current {
+      color: var(--navy);
+    }
+
+    .pagination .page-sep {
+      color: rgba(26, 24, 20, 0.4);
+    }
+
+    /* ─── contact & footer ─── */
+    .contact-footer {
+      background: #233E65;
+      padding: 100px 60px;
+    }
+
+    .contact-footer-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-label {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 16px;
+    }
+
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 5vw, 56px);
+      color: #FFFFFF;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .contact-subtext {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 48px;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background: transparent;
+      border: 1px solid #FFFFFF;
+      padding: 14px 40px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background: #FFFFFF;
+      color: #233E65;
+    }
+
+    .footer-strip {
+      margin-top: 80px;
+    }
+
+    .footer-rule {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      margin-bottom: 40px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy,
+    .footer-location {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .footer-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .contact-footer {
+        padding: 60px 24px;
+      }
+
+      .footer-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+    }
+
+    /* ─── responsive ─── */
+    @media (max-width: 900px) {
+      .listings-layout {
+        flex-direction: column;
+        padding: 0 24px 80px;
+      }
+
+      .filter-sidebar {
+        width: 100%;
+      }
+
+      .filter-options {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .page-header {
+        padding: 100px 24px 32px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .property-card {
+        height: auto;
+        flex-direction: column;
+      }
+
+      .card-photo {
+        width: 100%;
+        height: 160px;
+      }
+
+      .card-stats {
+        flex-direction: row;
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid rgba(26, 24, 20, 0.08);
+        padding: 16px 24px;
+        gap: 24px;
+      }
+
+      .card-actions {
+        flex-direction: row;
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid rgba(26, 24, 20, 0.08);
+        padding: 16px 24px;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- nav -->
+  <nav id="main-nav">
+    <ul class="nav-left">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Our Team</a></li>
+      <li><a href="#">Services</a></li>
+    </ul>
+
+    <ul class="nav-right">
+      <li><a href="#">Contact</a></li>
+      <li><a href="properties.html" class="nav-featured">Explore Our Properties</a></li>
+    </ul>
+
+    <button class="nav-hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- page header -->
+  <header class="page-header">
+    <span class="page-breadcrumb">Home · Properties · Current Listings</span>
+    <h1 class="page-heading">Current Listings</h1>
+  </header>
+
+  <!-- listings -->
+  <div class="listings-layout">
+
+    <!-- filter sidebar -->
+    <aside class="filter-sidebar">
+      <span class="filter-label">Property Type</span>
+      <div class="filter-options">
+        <div class="filter-option checked">
+          <div class="filter-checkbox"></div>
+          <span class="filter-option-label">Apartment</span>
+        </div>
+        <div class="filter-option">
+          <div class="filter-checkbox"></div>
+          <span class="filter-option-label">Townhouse</span>
+        </div>
+        <div class="filter-option">
+          <div class="filter-checkbox"></div>
+          <span class="filter-option-label">House</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- listings column -->
+    <div class="listings-column">
+
+      <!-- top bar -->
+      <div class="listings-topbar">
+        <span class="listings-count">5 Properties</span>
+        <div class="listings-sort">
+          <span class="sort-label">Sort</span>
+          <select class="sort-select">
+            <option>Price</option>
+            <option>Newest</option>
+            <option>Neighbourhood</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- property cards -->
+      <div class="property-cards">
+
+        <!-- card 1 -->
+        <div class="property-card">
+          <div class="card-photo">
+            <span class="card-photo-label">Property</span>
+            <span class="card-photo-arrow card-photo-arrow-left">←</span>
+            <span class="card-photo-arrow card-photo-arrow-right">→</span>
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-name">Casa Eixample</div>
+              <div class="card-type">Apartment</div>
+              <div class="card-address">Carrer de Mallorca, Eixample</div>
+            </div>
+            <div class="card-price">€485,000–520,000</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <span class="card-stat-number">3</span>
+              <span class="card-stat-label">Beds</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">2</span>
+              <span class="card-stat-label">Baths</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">95</span>
+              <span class="card-stat-label">m²</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <span class="card-heart">♡</span>
+            <span class="card-lock">🔒</span>
+            <span class="card-view-more">View more</span>
+          </div>
+        </div>
+
+        <!-- card 2 -->
+        <div class="property-card">
+          <div class="card-photo">
+            <span class="card-photo-label">Property</span>
+            <span class="card-photo-arrow card-photo-arrow-left">←</span>
+            <span class="card-photo-arrow card-photo-arrow-right">→</span>
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-name">Gràcia Garden Flat</div>
+              <div class="card-type">Apartment</div>
+              <div class="card-address">Carrer de Verdi, Gràcia</div>
+            </div>
+            <div class="card-price">€390,000–420,000</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <span class="card-stat-number">2</span>
+              <span class="card-stat-label">Beds</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">1</span>
+              <span class="card-stat-label">Baths</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">78</span>
+              <span class="card-stat-label">m²</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <span class="card-heart">♡</span>
+            <span class="card-lock">🔒</span>
+            <span class="card-view-more">View more</span>
+          </div>
+        </div>
+
+        <!-- card 3 -->
+        <div class="property-card">
+          <div class="card-photo">
+            <span class="card-photo-label">Property</span>
+            <span class="card-photo-arrow card-photo-arrow-left">←</span>
+            <span class="card-photo-arrow card-photo-arrow-right">→</span>
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-name">Sant Pere Townhouse</div>
+              <div class="card-type">Townhouse</div>
+              <div class="card-address">Carrer dels Carders, Sant Pere</div>
+            </div>
+            <div class="card-price">€650,000–700,000</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <span class="card-stat-number">4</span>
+              <span class="card-stat-label">Beds</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">3</span>
+              <span class="card-stat-label">Baths</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">145</span>
+              <span class="card-stat-label">m²</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <span class="card-heart">♡</span>
+            <span class="card-lock">🔒</span>
+            <span class="card-view-more">View more</span>
+          </div>
+        </div>
+
+        <!-- card 4 -->
+        <div class="property-card">
+          <div class="card-photo">
+            <span class="card-photo-label">Property</span>
+            <span class="card-photo-arrow card-photo-arrow-left">←</span>
+            <span class="card-photo-arrow card-photo-arrow-right">→</span>
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-name">Sarrià House</div>
+              <div class="card-type">House</div>
+              <div class="card-address">Passeig de la Bonanova, Sarrià</div>
+            </div>
+            <div class="card-price">€1,100,000–1,250,000</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <span class="card-stat-number">5</span>
+              <span class="card-stat-label">Beds</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">4</span>
+              <span class="card-stat-label">Baths</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">280</span>
+              <span class="card-stat-label">m²</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <span class="card-heart">♡</span>
+            <span class="card-lock">🔒</span>
+            <span class="card-view-more">View more</span>
+          </div>
+        </div>
+
+        <!-- card 5 -->
+        <div class="property-card">
+          <div class="card-photo">
+            <span class="card-photo-label">Property</span>
+            <span class="card-photo-arrow card-photo-arrow-left">←</span>
+            <span class="card-photo-arrow card-photo-arrow-right">→</span>
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-name">Barceloneta Studio</div>
+              <div class="card-type">Apartment</div>
+              <div class="card-address">Passeig Marítim, Barceloneta</div>
+            </div>
+            <div class="card-price">€310,000–340,000</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <span class="card-stat-number">1</span>
+              <span class="card-stat-label">Beds</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">1</span>
+              <span class="card-stat-label">Baths</span>
+            </div>
+            <div class="card-stat">
+              <span class="card-stat-number">52</span>
+              <span class="card-stat-label">m²</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <span class="card-heart">♡</span>
+            <span class="card-lock">🔒</span>
+            <span class="card-view-more">View more</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- pagination -->
+      <div class="pagination">
+        <a href="#">← Previous</a>
+        <span class="page-sep">·</span>
+        <span class="page-current">1</span>
+        <span class="page-sep">·</span>
+        <a href="#">2</a>
+        <span class="page-sep">·</span>
+        <a href="#">3</a>
+        <span class="page-sep">·</span>
+        <span class="page-sep">...</span>
+        <span class="page-sep">·</span>
+        <a href="#">Next →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- contact & footer -->
+  <section class="contact-footer">
+    <div class="contact-footer-inner">
+
+      <span class="contact-label">Get in Touch</span>
+      <h2 class="contact-heading">Ready to find your<br>next property?</h2>
+      <p class="contact-subtext">We take on a small number of clients each season to ensure every search receives our full attention. Reach out to begin the conversation.</p>
+      <a href="#" class="contact-btn">Book a Consultation</a>
+
+      <div class="footer-strip">
+        <hr class="footer-rule">
+        <div class="footer-row">
+          <span class="footer-copy">© 2026 Paulo Properties</span>
+          <span class="footer-logo-text">the Paulo Properties</span>
+          <span class="footer-location">Barcelona · Est. 2006</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    nav.classList.add('scrolled');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    document.querySelectorAll('.filter-option').forEach(option => {
+      option.addEventListener('click', () => {
+        option.classList.toggle('checked');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:/Users/hanna/Documents/mano-studio/palau-properties\")",
+      "Bash(mv \"C:/Users/hanna/Documents/mano-studio/palau-properties.html\" \"C:/Users/hanna/Documents/mano-studio/palau-properties/index.html\")"
+    ]
+  }
+}

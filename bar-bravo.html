@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bar Bravo — Tapas &amp; Vermouth, Gràcia Barcelona</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital,wght@1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS Variables ─── */
+    :root {
+      --black: #0F0F0F;
+      --white: #FAFAFA;
+      --garnet: #8B1A1A;
+      --gold: #C8963E;
+      --bg: #FAFAFA;
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ─── Nav ─── */
+    .nav {
+      background-color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 48px;
+      border-bottom: 1px solid #E0E0E0;
+    }
+
+    .nav__logo {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover {
+      color: var(--garnet);
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      background-color: var(--white);
+    }
+
+    .hero__title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14vw;
+      color: var(--black);
+      line-height: 0.9;
+      letter-spacing: 0.05em;
+      padding: 0 48px;
+      text-align: center;
+    }
+
+    .hero__image-wrapper {
+      margin: 0px 24px 0;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .hero__image {
+      display: block;
+      width: 100%;
+      height: 65vh;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero__spacer {
+      height: 48px;
+    }
+
+    /* ─── Menu ─── */
+    .menu {
+      background-color: var(--white);
+      padding: 80px 0;
+    }
+
+    .menu__label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5vw;
+      color: var(--black);
+      letter-spacing: 0.05em;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .menu__list {
+      list-style: none;
+    }
+
+    .menu__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      border-bottom: 1px solid #E8E8E8;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .menu__item:first-child {
+      border-top: 1px solid #E8E8E8;
+    }
+
+    .menu__item:hover {
+      background: #F5F5F5;
+    }
+
+    .menu__item:hover .menu__arrow {
+      transform: translateX(6px);
+    }
+
+    .menu__number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: #999;
+    }
+
+    .menu__category {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      flex: 1;
+      text-align: center;
+    }
+
+    .menu__arrow {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--black);
+      transition: transform 0.2s;
+    }
+
+    .menu__cta {
+      display: block;
+      width: fit-content;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 100px;
+      padding: 14px 32px;
+      margin: 48px auto 0;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .menu__cta:hover {
+      background: var(--garnet);
+    }
+
+    /* ─── About ─── */
+    .about {
+      background-color: var(--white);
+      padding: 80px 48px;
+    }
+
+    .about__card {
+      background-color: var(--white);
+      border: 3px solid var(--black);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .about__left {
+      width: 60%;
+      padding: 64px;
+    }
+
+    .about__label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+
+    .about__heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      color: var(--black);
+      line-height: 1;
+      margin-top: 16px;
+    }
+
+    .about__body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      color: #444444;
+      line-height: 1.7;
+      margin-top: 24px;
+      max-width: 420px;
+    }
+
+    .about__detail {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--gold);
+      font-style: italic;
+      margin-top: 32px;
+    }
+
+    .about__right {
+      width: 40%;
+      padding: 24px;
+    }
+
+    .about__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* ─── Banner ─── */
+    .banner {
+      background-color: var(--white);
+      padding: 0 48px;
+    }
+
+    .banner__text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 32px;
+      font-weight: 200;
+      font-style: normal;
+      color: var(--black);
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 8px 0;
+    margin: 0;
+    }
+
+    /* ─── Gallery ─── */
+    .gallery {
+      background-color: var(--white);
+      padding: 80px 48px;
+    }
+
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 16px;
+    }
+
+    .gallery__grid img {
+      display: block;
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    /* ─── Back link ─── */
+    .back-link {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--black);
+      text-decoration: none;
+      z-index: 100;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--garnet);
+    }
+
+    /* ─── Mobile responsive ─── */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 20px 24px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .nav__links {
+        gap: 20px;
+      }
+
+      .hero__title {
+        font-size: 20vw;
+        padding: 0 24px;
+      }
+
+      .hero__image-wrapper {
+        margin: 16px 16px 0;
+      }
+
+      .signature {
+        padding: 48px 24px;
+      }
+
+      .about__card {
+        flex-direction: column;
+      }
+
+      .about__left {
+        width: 100%;
+        padding: 40px 32px;
+      }
+
+      .about__right {
+        width: 100%;
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- nav -->
+  <nav class="nav">
+    <a href="#" class="nav__logo">BAR BRAVO</a>
+    <ul class="nav__links">
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">Find Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- hero -->
+  <section class="hero">
+    <h1 class="hero__title">BAR BRAVO</h1>
+
+    <div class="hero__image-wrapper">
+      <img
+        class="hero__image"
+        src="images/tapas_5.jpg"
+        alt="Bar Bravo interior — tapas and vermouth bar in Gràcia, Barcelona"
+      />
+    </div>
+
+    <div class="hero__spacer"></div>
+  </section>
+
+  <!-- menu -->
+  <section class="menu">
+    <p class="menu__label">MENU ↓</p>
+    <ul class="menu__list">
+      <li class="menu__item">
+        <span class="menu__number">[9]</span>
+        <span class="menu__category">VERMUT &amp; APERITIVOS</span>
+        <span class="menu__arrow">→</span>
+      </li>
+      <li class="menu__item">
+        <span class="menu__number">[12]</span>
+        <span class="menu__category">TAPAS DE LA CASA</span>
+        <span class="menu__arrow">→</span>
+      </li>
+      <li class="menu__item">
+        <span class="menu__number">[6]</span>
+        <span class="menu__category">CONSERVAS</span>
+        <span class="menu__arrow">→</span>
+      </li>
+      <li class="menu__item">
+        <span class="menu__number">[8]</span>
+        <span class="menu__category">VINOS &amp; CAVA</span>
+        <span class="menu__arrow">→</span>
+      </li>
+      <li class="menu__item">
+        <span class="menu__number">[5]</span>
+        <span class="menu__category">POSTRES</span>
+        <span class="menu__arrow">→</span>
+      </li>
+    </ul>
+    <a href="#" class="menu__cta">VER LA CARTA COMPLETA</a>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about__card">
+      <div class="about__left">
+        <p class="about__label">ABOUT US</p>
+        <h2 class="about__heading">A neighbourhood bar. Since forever.</h2>
+        <p class="about__body">We opened in 1987 in the heart of Gràcia. No reservations, no craft cocktail menus, no fuss. Just good company, cold vermouth, and tapas the way they should be.</p>
+        <p class="about__detail">— Come as you are.</p>
+      </div>
+      <div class="about__right">
+        <img
+          class="about__image"
+          src="./images/tapas_3.jpg"
+          alt="Bar Bravo interior"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section class="banner">
+    <p class="banner__text">A meeting place for Barcelona locals.</p>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="gallery__grid">
+      <img src="images/tapas_4.jpg" alt="" />
+      <img src="images/tapas_9.jpg" alt="" />
+      <img src="images/tapas_2.jpg" alt="" />
+      <img src="images/tapas_12.jpg" alt="" />
+      <img src="images/tapas_10.jpg" alt="" />
+      <img src="images/tapas_11.jpg" alt="" />
+    </div>
+  </section>
+
+  <!-- back to mano studio -->
+  <a href="index.html" class="back-link">← Mano Studio</a>
+
+</body>
+</html>

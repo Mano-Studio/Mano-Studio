@@ -48,14 +48,26 @@
       transition: background 0.4s ease, box-shadow 0.4s ease;
     }
 
-    nav.scrolled {
-      background: var(--green);
-      box-shadow: 0 1px 12px rgba(26, 16, 8, 0.08);
-    }
+   nav .nav-logo {
+  color: var(--green);
+}
 
-    nav.scrolled .nav-logo {
-      color: var(--flame);
-    }
+nav .nav-links a {
+  color: var(--green);
+}
+
+nav.scrolled {
+  background: var(--green);
+  box-shadow: 0 1px 12px rgba(26, 16, 8, 0.08);
+}
+
+nav.scrolled .nav-logo {
+  color: var(--vanilla);
+}
+
+nav.scrolled .nav-links a {
+  color: var(--vanilla);
+}
 
     /* logo */
     .nav-logo {
@@ -400,10 +412,9 @@
   <nav>
     <a class="nav-logo" href="cafetera-bonita.html">Cafetera Bonita</a>
     <ul class="nav-links">
-      <li><a href="cafetera-bonita.html#">Menu</a></li>
-      <li><a href="cafetera-bonita.html#">Our Story</a></li>
-      <li><a href="cafetera-bonita.html#">The Beans</a></li>
-      <li><a href="cafetera-bonita.html#">Find Us</a></li>
+      <li><a href="cafetera-bonita.html#menu">Menu</a></li>
+      <li><a href="cafetera-bonita.html#about">Our Story</a></li>
+      <li><a href="cafetera-bonita.html#find-us">Find Us</a></li>
       <li><a href="work-with-us.html">Work With Us</a></li>
     </ul>
     <button class="burger" aria-label="Open menu">
@@ -416,10 +427,10 @@
   <!-- MOBILE OVERLAY -->
   <div class="nav-overlay">
     <button class="overlay-close" aria-label="Close menu">&#x2715;</button>
-    <a href="cafetera-bonita.html#">Menu</a>
-    <a href="cafetera-bonita.html#">Our Story</a>
-    <a href="cafetera-bonita.html#">The Beans</a>
-    <a href="cafetera-bonita.html#">Find Us</a>
+    <a href="cafetera-bonita.html#menu">Menu</a>
+    <a href="cafetera-bonita.html#about">Our Story</a>
+    <a href="cafetera-bonita.html#the-beans">The Beans</a>
+    <a href="cafetera-bonita.html#find-us">Find Us</a>
     <a href="work-with-us.html">Work With Us</a>
   </div>
 
